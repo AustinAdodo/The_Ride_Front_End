@@ -1,1 +1,7 @@
-<p>map works!</p>
+<div style="height: 400px;">
+  <google-map [options]="mapOptions">
+    <map-marker *ngFor="let car of cars; let i = index" [position]="car">
+      <map-marker-label> {{ i + 1 }} </map-marker-label>
+    </map-marker>
+  </google-map>
+</div>
