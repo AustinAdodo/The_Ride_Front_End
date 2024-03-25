@@ -1,7 +1,13 @@
-<div style="height: 400px;">
-  <google-map [options]="mapOptions">
-    <map-marker *ngFor="let car of cars; let i = index" [position]="car">
-      <map-marker-label> {{ i + 1 }} </map-marker-label>
-    </map-marker>
-  </google-map>
+<div *ngIf="isGoogleMapsToBeDisplayed">
+  <div style="height: 400px;">
+    <google-map [options]="mapOptions">
+      <map-marker *ngFor="let car of cars; let i = index" [position]="car">
+        <map-marker-label> {{ i + 1 }}</map-marker-label>
+      </map-marker>
+    </google-map>
+  </div>
 </div>
+<div *ngIf="isMapBoxMapToBeDisplayed">
+  <div id="map" style="height: 400px;"></div>
+</div>
+
