@@ -1,0 +1,15 @@
+.top-menu nav ul li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.top-menu nav ul li a svg {
+  fill: white; /* Icon color */
+}
+
+.top-menu nav ul li a:hover svg {
+  fill: #4CAF50; /* Icon color on hover */
+}
