@@ -111,7 +111,7 @@ export class MapComponent implements OnInit {
         console.log('Drivers:', drivers);
       })
       .catch(error => {
-        console.error('Error:', error);
+        console.error('Error: Close by Drivers could not be retrieved', error);
       });
   }
 }
