@@ -1,0 +1,17 @@
+<div class="login-container">
+  <h2>Login</h2>
+  <form *ngIf="!isLoggedIn" (ngSubmit)="login()">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" [(ngModel)]="username" required>
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" [(ngModel)]="password" required>
+    </div>
+    <button type="submit">Login</button>
+    <a href="#" class="forgot-password">Forgot Password?</a>
+  </form>
+  <button *ngIf="isLoggedIn" (click)="logout()">Logout</button>
+  <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
+</div>
