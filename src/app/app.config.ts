@@ -11,6 +11,6 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideClientHydration(),
-    HttpClientModule // Provide HttpClientModule here
+    HttpClientModule
   ]
 };

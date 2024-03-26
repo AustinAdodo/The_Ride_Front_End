@@ -173,7 +173,21 @@
     }
   }
 </style>
-
+<!--------------------------------------------------------------Top menu--------------------------------------->
+<header class="top-menu">
+  <nav>
+    <ul>
+      <li>
+        <a [routerLink]="['/']">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="violet" viewBox="0 0 24 24">
+            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+          </svg>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
+<!-------------------------------------------------------Body-------------------------------------------->
 <main class="main">
   <div class="content">
     <div class="left-side">
@@ -185,9 +199,9 @@
       <div class="pill-group">
         @for (item of [
           { title: 'Login', link: '/login' },
-          {title: 'Driver Login', link: ''},
-          {title: 'User Signup', link: ''},
-          {title: 'Driver Signup', link: ''},
+          {title: 'Driver Login', link: '/drive/login'},
+          {title: 'User Signup', link: '/signup'},
+          {title: 'Driver Signup', link: '/drive/signup'},
 
         ]; track item.title) {
           <a class="pill" [routerLink]="[item.link]" target="_blank" rel="noopener">

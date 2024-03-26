@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {GoogleMap, MapMarker} from "@angular/google-maps";
 import mapboxgl, {baseApiUrl} from 'mapbox-gl';
 import {NgForOf, NgIf} from "@angular/common";
-import { DriverService } from '../../services/DriverService';
-import {environment} from '../../environments/environment';
+import { DriverService } from '../services/DriverService';
+import {environment} from '../environments/environment';
 
 const apiKey = environment.googleMapsApiKey;
 const map_Box_key = environment.mapBoxGlAccessToken;
