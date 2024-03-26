@@ -3,6 +3,6 @@ import {LoginComponent} from "./login/login.component";
 import {HomeComponent} from "./home/home.component";
 
 export const routes: Route[] = [
-  { path: '/login', component: LoginComponent },
-  { path: '/index', component: HomeComponent }
+  { path: 'login', component: LoginComponent},
+  { path: 'index', component: HomeComponent }
 ];
