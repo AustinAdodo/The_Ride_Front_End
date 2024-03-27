@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {provideRouter, RouterLink, RouterOutlet} from '@angular/router';
+import {NavigationEnd, provideRouter, RouterLink, RouterOutlet} from '@angular/router';
 import {Router} from '@angular/router';
 import {routes} from './app.routes';
+import {filter} from "rxjs";
 
 
 @Component({
@@ -14,8 +15,14 @@ import {routes} from './app.routes';
 })
 export class AppComponent implements OnInit {
   title = 'The Ride';
+  showMainContent: boolean = false;
 
   constructor(private router: Router) {
+    this.router.events.pipe(
+      filter((event): event is NavigationEnd => event instanceof NavigationEnd)
+    ).subscribe((event: NavigationEnd) => {
+      this.showMainContent = event.url === '/' || event.url === '/home';
+    });
   }
 
   ngOnInit() {
