@@ -1,0 +1,9 @@
+<form [formGroup]="driverForm" (ngSubmit)="onSubmit()">
+  <input type="text" formControlName="firstName" placeholder="First Name">
+  <input type="text" formControlName="middleName" placeholder="Middle Name">
+  <input type="text" formControlName="lastName" placeholder="Last Name">
+  <input type="text" formControlName="address" placeholder="Address">
+  <input type="text" formControlName="carColor" placeholder="Car Color">
+  <input type="text" formControlName="carName" placeholder="Car Name">
+  <button type="submit" [disabled]="!driverForm.valid">Add Driver</button>
+</form>
