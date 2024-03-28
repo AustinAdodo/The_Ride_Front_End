@@ -1,0 +1,44 @@
+/* Styles for the signup header */
+.signup-header h1 {
+  font-size: 32px; /* Large text for "Signup as Driver" */
+  margin-bottom: 10px; /* Space between the h1 and h2 */
+  text-align: center; /* Center the heading */
+}
+
+.signup-header h2 {
+  font-size: 24px; /* Slightly smaller text for the subtitle */
+  font-weight: bold; /* Bold text */
+  margin-bottom: 20px; /* Space between the subtitle and the form */
+  text-align: center; /* Center the subtitle */
+}
+
+/* Styles for the form */
+.driver-form {
+  display: flex;
+  flex-direction: column; /* Stack the form fields vertically */
+  align-items: center; /* Center the form fields horizontally */
+  gap: 15px; /* Space between each form field */
+}
+
+.form-field input {
+  width: 100%; /* Make input fields take full width of the form field container */
+  max-width: 300px; /* Maximum width of input fields */
+  padding: 10px; /* Padding inside the input fields */
+  border: 1px solid #ccc; /* Border color for the input fields */
+  border-radius: 5px; /* Rounded corners for the input fields */
+}
+
+button {
+  width: 100%;
+  max-width: 300px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #ccc;
+}

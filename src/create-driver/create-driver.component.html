@@ -1,9 +1,26 @@
-<form [formGroup]="driverForm" (ngSubmit)="onSubmit()">
-  <input type="text" formControlName="firstName" placeholder="First Name">
-  <input type="text" formControlName="middleName" placeholder="Middle Name">
-  <input type="text" formControlName="lastName" placeholder="Last Name">
-  <input type="text" formControlName="address" placeholder="Address">
-  <input type="text" formControlName="carColor" placeholder="Car Color">
-  <input type="text" formControlName="carName" placeholder="Car Name">
+<div class="signup-header">
+  <h1>Signup as Driver</h1>
+  <h2>Drive with us, extend your financial freedom</h2>
+</div>
+
+<form [formGroup]="driverForm" (ngSubmit)="onSubmit()" class="driver-form">
+  <div class="form-field">
+    <input type="text" formControlName="firstName" placeholder="First Name">
+  </div>
+  <div class="form-field">
+    <input type="text" formControlName="middleName" placeholder="Middle Name">
+  </div>
+  <div class="form-field">
+    <input type="text" formControlName="lastName" placeholder="Last Name">
+  </div>
+  <div class="form-field">
+    <input type="text" formControlName="address" placeholder="Address">
+  </div>
+  <div class="form-field">
+    <input type="text" formControlName="carColor" placeholder="Car Color">
+  </div>
+  <div class="form-field">
+    <input type="text" formControlName="carName" placeholder="Car Name">
+  </div>
   <button type="submit" [disabled]="!driverForm.valid">Add Driver</button>
 </form>
