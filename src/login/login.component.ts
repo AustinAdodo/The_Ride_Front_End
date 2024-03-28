@@ -6,7 +6,6 @@ import {NgIf} from "@angular/common";
 import {HttpClientModule} from '@angular/common/http';
 import {environment} from "../environments/environment";
 import {AuthService} from '../services/AuthService';
-import {baseApiUrl} from "mapbox-gl";
 
 const baseUri: string = environment.baseUri;
 
@@ -31,6 +30,7 @@ export class LoginComponent {
   }
 
   login() {
+    console.log('inside login');
     const credentials = {
       username: this.username,
       password: this.password
@@ -40,7 +40,7 @@ export class LoginComponent {
         () => {
           this.authService.login();
           console.log('Attempting to navigate to /app-map');
-          this.router.navigate(['/app-map']).then(success => {
+          this.router.navigate(['/usermap']).then(success => {
             if (success) {
               console.log('Navigation to /app-map successful');
             } else {
@@ -54,19 +54,5 @@ export class LoginComponent {
           this.errorMessage = error.error.message || 'An error occurred during login.';
         }
       );
-  }
-
-  logout() {
-    this.http.post('/logout', {}).subscribe(
-      () => {
-        this.authService.logout();
-        this.router.navigate(['/login']).then(r => this.isLoggedIn = false);
-      },
-      (error: any) => {
-        // Handle error
-        console.error('Logout failed:', error);
-        this.errorMessage = 'Logout failed';
-      }
-    );
   }
 }

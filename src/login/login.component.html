@@ -12,6 +12,5 @@
     <button type="submit">Login</button>
     <a href="#" class="forgot-password">Forgot Password?</a>
   </form>
-  <button *ngIf="isLoggedIn" (click)="logout()">Logout</button>
   <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
 </div>
