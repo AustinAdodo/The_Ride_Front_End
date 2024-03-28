@@ -1,0 +1,70 @@
+.login-container {
+  max-width: 400px; /* Adjust width as needed */
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional: adds shadow for better visibility */
+}
+
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 20px; /* Adds space below the heading */
+}
+
+.form-group {
+  margin-bottom: 20px; /* Adds space between form groups */
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px; /* Adds space below the label */
+}
+
+.form-group input[type="email"],
+.form-group input[type="password"] {
+  width: 100%; /* Makes textboxes longer */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px; /* Optional: rounds the corners */
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff; /* Example color */
+  color: white;
+  border: none;
+  border-radius: 4px; /* Optional: rounds the corners */
+  cursor: pointer;
+  margin-bottom: 10px; /* Adds space below the button */
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3; /* Darker shade for hover effect */
+}
+
+.forgot-password {
+  display: block; /* Makes the link take its own line */
+  text-align: center;
+  margin-top: 10px; /* Adds space above the link */
+}
+
+.error-message {
+  color: #ff0000; /* Red color for error messages */
+  margin-top: 10px; /* Adds space above the error message */
+}
+
+/* Additional styles for the logout button, if needed */
+button[ngIf] {
+  width: 100%;
+  padding: 10px;
+  background-color: #dc3545; /* Example color for the logout button */
+  color: white;
+  border: none;
+  border-radius: 4px; /* Optional: rounds the corners */
+  cursor: pointer;
+  margin-top: 10px; /* Adds space above the button */
+}
+
+button[ngIf]:hover {
+  background-color: #c82333; /* Darker shade for hover effect */
+}
