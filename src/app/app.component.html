@@ -177,16 +177,49 @@
   <nav>
     <ul>
       <li>
-        <a [routerLink]="['/']">
+        <a [routerLink]="['/']" title="Home">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="violet" viewBox="0 0 24 24">
             <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
           </svg>
         </a>
       </li>
+      <!-- Person icon for View Profile -->
+      <li *ngIf="isLoggedIn">
+        <a [routerLink]="['/profile']" title="View Profile">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="green" viewBox="0 0 24 24">
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+          </svg>
+        </a>
+      </li>
+      <!-- Airplane icon -->
+      <li *ngIf="isLoggedIn">
+        <a [routerLink]="['/']" title="Explore">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="blue" viewBox="0 0 24 24">
+            <path d="M21.48 13.7L12 11l-2.25-6.78c-.17-.52-.67-.88-1.23-.88s-1.05.36-1.23.88L3.51 13.7 2 14v5h5.07L12 22l4.93-3H22v-5l-1.52-.3zM12 13l-1.07-.5L12 11l1.07 1.5L12 13z"/>
+          </svg>
+        </a>
+      </li>
+      <!-- Dashboard icon -->
+      <li *ngIf="isLoggedIn">
+        <a [routerLink]="['/home']" title="View Dashboard">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="red" viewBox="0 0 24 24">
+            <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
+          </svg>
+        </a>
+      </li>
+      <!-- Logout -->
+      <li *ngIf="isLoggedIn" style="margin-left:auto;">
+        <a [routerLink]="['/']" title="Logout" (click)="logout()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12H9m0 0l3 3m-3-3l3-3m-9 3a9 9 0 1 1 18 0 9 9 0 1 1-18 0z"></path>
+          </svg>
+<!--          <span>Logout</span>-->
+        </a>
+      </li>
     </ul>
   </nav>
 </header>
-<!-------------------------------------------------------Body-------------------------------------------->
+<!-------------------------------------------------------Body-------------------------------------------------->
 <main class="main" *ngIf="showMainContent">
   <div class="content">
     <div class="left-side">
@@ -200,7 +233,7 @@
           {title: 'Login', link: '/login'},
           {title: 'Driver Login', link: '/drive/login'},
           {title: 'User Signup', link: '/signup'},
-          {title: 'Driver Signup', link: '/drive/signup'},
+          {title: 'Driver Signup', link: '/drive/create'},
 
         ]; track item.title) {
           <a class="pill" [routerLink]="[item.link]" target="_blank" rel="noopener">

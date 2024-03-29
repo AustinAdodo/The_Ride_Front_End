@@ -11,5 +11,6 @@ export const routes: Route[] = [
   {path: 'index', component: HomeComponent},
   {path: 'drive/login', component: DriverLoginComponent},
   {path: 'drive/create', component: CreateDriverComponent},
+  {path: 'home', component: HomeComponent},
   { path: 'usermap', component: MapComponent }
 ];

@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
     this.router.events.pipe(
       filter((event): event is NavigationEnd => event instanceof NavigationEnd)
     ).subscribe((event: NavigationEnd) => {
-      this.showMainContent = event.url === '/' || event.url === '/home';
+      this.showMainContent = event.url === '/' || event.url === '/index';
     });
 
     this.authService.isLoggedIn.subscribe((loggedIn) => {
