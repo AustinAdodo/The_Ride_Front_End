@@ -1,0 +1,23 @@
+<div class="signup-header">
+  <h1>Signup as Driver</h1>
+  <h2>Drive with us, extend your financial freedom</h2>
+</div>
+
+<form [formGroup]="UserForm" (ngSubmit)="onSubmit()" class="driver-form">
+  <div class="form-field">
+    <input type="text" formControlName="firstName" placeholder="First Name">
+  </div>
+  <div class="form-field">
+    <input type="text" formControlName="middleName" placeholder="Middle Name">
+  </div>
+  <div class="form-field">
+    <input type="text" formControlName="lastName" placeholder="Last Name">
+  </div>
+  <div class="form-field">
+    <input type="text" formControlName="address" placeholder="Address">
+  </div>
+  <div class="form-field">
+    <input type="text" readonly formControlName="type" placeholder="" [value]="customer">
+  </div>
+  <button type="submit" [disabled]="!UserForm.valid">Add Driver</button>
+</form>
