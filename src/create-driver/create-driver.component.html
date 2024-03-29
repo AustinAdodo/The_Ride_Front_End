@@ -20,7 +20,10 @@
     <input type="text" formControlName="carColor" placeholder="Car Color">
   </div>
   <div class="form-field">
-    <input type="text" formControlName="carName" placeholder="Car Name">
+    <input type="text" formControlName="carBrand" placeholder="Car Brand">
+  </div>
+  <div class="form-field">
+    <input type="text" readonly formControlName="type" placeholder="" [value]="driver">
   </div>
   <button type="submit" [disabled]="!driverForm.valid">Add Driver</button>
 </form>
