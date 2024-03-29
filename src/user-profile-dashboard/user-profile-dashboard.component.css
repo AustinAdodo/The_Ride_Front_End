@@ -1,0 +1,130 @@
+.dashboard {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.dashboard h2 {
+  text-align: center;
+}
+
+.dashboard section {
+  margin-bottom: 20px;
+}
+
+.recent-trips ul, .favorite-places ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.recent-trips li, .favorite-places li {
+  background-color: #f0f0f0;
+  margin-bottom: 5px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* Button Styling */
+button.Book {
+  background-color: #4CAF50; /* Green background */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px; /* Rounded corners */
+}
+
+/* Form Styling */
+form {
+  background-color: #f2f2f2; /* Light grey background */
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Slight shadow for depth */
+}
+
+/* Input Field Styling */
+input[type="text"] {
+  width: 100%; /* Full width */
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc; /* Light grey border */
+  border-radius: 4px; /* Rounded borders */
+  box-sizing: border-box; /* padding should not affect width */
+}
+
+/* Label Styling */
+label {
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+/* Adjust the non-"Book"*/
+button:not(.Book) {
+  background-color: violet;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+/* Adjust button spacing within the form, added because this form has just 2 buttons */
+form button {
+  margin-right: 10px;
+}
+
+.pill {
+  display: flex;
+  align-items: center;
+  --pill-accent: var(--bright-blue);
+  background: color-mix(in srgb, var(--pill-accent) 5%, transparent);
+  color: var(--pill-accent);
+  padding-inline: 1rem; /* Increased from 0.75rem */
+  padding-block: 0.375rem;
+  min-width: 100px;
+  border-radius: 2.75rem;
+  border: 0;
+  transition: background 0.3s ease;
+  font-family: var(--electric-violet);
+  font-size: 0.800rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.6rem;
+  letter-spacing: -0.00875rem;
+  text-decoration: none;
+}
+
+.line-indicator::before {
+  content: '';
+  display: inline-block;
+  width: 2px;
+  height: 100%;
+  background-color: black; /* Or any color */
+  margin-right: 15px;
+  vertical-align: middle;
+}
+
+.recent-trips h3 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+
+/*!* To target only the first button (if you have more buttons in the future), */
+/*   you can use the :first-of-type pseudo-class *!*/
+/*form button:first-of-type {*/
+/*  margin-right: 15px; !* Adjusts space as needed *!*/
+/*}*/
+
+/*!* Alternatively, to ensure the last button does not have extra margin to the right, */
+/*   you could adjust the margin of the second button instead *!*/
+/*form button:last-of-type {*/
+/*  margin-left: 15px; !* Adds space to the left of the last button *!*/
+/*}*/

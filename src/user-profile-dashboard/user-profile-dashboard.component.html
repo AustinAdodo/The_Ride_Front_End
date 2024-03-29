@@ -1,1 +1,60 @@
-<p>user-profile-dashboard works!</p>
+<div class="dashboard">
+  <h2>Welcome to Your Dashboard</h2>
+
+  <section class="book-trip">
+    <h3>Book a Trip</h3>
+    <!-- Button to show form -->
+    <button class="Book" *ngIf="!showForm" (click)="showForm = true">Book</button>
+    <!-- Booking form -->
+    <form *ngIf="showForm" (ngSubmit)="onSubmit()">
+      <label for="destination">Destination:</label>
+      <input type="text" id="destination" name="destination" placeholder="Type here">
+      <button type="submit">Book</button>
+      <button type="button" (click)="showForm = false">Cancel</button>
+    </form>
+  </section>
+
+  <section class="recent-trips">
+    <h3>
+      <p> Recent Trips
+        <img ngSrc="{{Rating}}" title="rating" alt="" style="width: 15px; height: inherit;" fill></p>
+    </h3>
+    <ul>
+      <li *ngFor="let trip of recentTrips">
+        {{ trip.destination }} - {{ trip.date }} ({{ trip.status }})
+      </li>
+    </ul>
+  </section>
+
+  <section class="favorite-places">
+    <h3>Favorite Places</h3>
+    <ul>
+      <li *ngFor="let place of favoritePlaces">
+        {{ place.name }} - {{ place.location }}
+      </li>
+    </ul>
+  </section>
+
+  <section class="payments">
+    <h3>Payments</h3>
+    <p class="line-indicator">
+      <img ngSrc="{{ mastercard }}" title="mastercard" alt="" style="height: 100%; width: 4px; vertical-align: middle; padding-right: 15px" fill>
+  <span style="padding-right: 6px; display: inline-flex; align-items: center;">
+    Card  ****3417
+    <a class="pill" target="_blank" rel="noopener" title="Manage">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        height="14"
+        viewBox="0 -960 960 960"
+        width="14"
+        fill="currentColor"
+      >
+            <path
+              d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z"
+            />
+          </svg>
+    </a>
+  </span>
+  </p>
+  </section>
+</div>
