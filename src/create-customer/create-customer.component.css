@@ -1,0 +1,135 @@
+
+.signup-header h1 {
+  font-size: 32px;
+  margin-bottom: 10px; /* Space between the h1 and h2 */
+  text-align: center; /* Center the heading */
+}
+
+.signup-header h2 {
+  font-size: 24px; /* Slightly smaller text for the subtitle */
+  font-weight: bold; /* Bold text */
+  margin-bottom: 20px; /* Space between the subtitle and the form */
+  text-align: center; /* Center the subtitle */
+}
+
+/* Styles for the form */
+.driver-form {
+  display: flex;
+  flex-direction: column; /* Stack the form fields vertically */
+  align-items: center; /* Center the form fields horizontally */
+  gap: 15px; /* Space between each form field */
+}
+
+.form-field input {
+  width: 100%; /* Make input fields take full width of the form field container */
+  max-width: 300px; /* Maximum width of input fields */
+  padding: 10px; /* Padding inside the input fields */
+  border: 1px solid #ccc; /* Border color for the input fields */
+  border-radius: 5px; /* Rounded corners for the input fields */
+}
+
+button {
+  width: 100%;
+  max-width: 300px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #ccc;
+}
+
+.password-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-icon {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+}
+
+.form-control {
+  width: 100%;
+  padding-right: 30px; /* Adjust this value based on the size of the icon to prevent text overlap */
+}
+
+.error-label {
+  color: red;
+  margin-left: 10px; /* Adjust as needed */
+  font-size: 0.8rem; /* Adjust as needed */
+}
+
+.form-container {
+  max-height: 50vh; /* Now set to 50% of the viewport height */
+  overflow-y: auto; /* Enables vertical scrolling */
+  padding: 16px; /* Optional, for some spacing around the form */
+}
+
+.driver-form .form-field {
+  margin-bottom: 20px; /* Spacing between form fields */
+}
+
+.driver-form .form-select, .driver-form .form-field input {
+  width: 100%; /* Ensures full width within the form */
+  padding: 8px 12px; /* Adjust padding for comfort */
+  border: 1px solid #ccc; /* A light border */
+  border-radius: 4px; /* Optionally round corners */
+  font-family: Arial, sans-serif; /* Match your site's font */
+  font-size: 16px; /* Adequate font size for readability */
+}
+
+.driver-form .form-select:focus, .driver-form .form-field input:focus {
+  border-color: #007bff; /* Highlight color on focus */
+  outline: none; /* Remove default focus outline */
+}
+
+/*!* Optional: Style the dropdown arrow *!*/
+/*.driver-form .form-select {*/
+/*  appearance: none; !* Remove default styling *!*/
+/*  background-image: url('dropdown-arrow.svg'); !* Custom arrow icon *!*/
+/*  background-repeat: no-repeat;*/
+/*  background-position: right 10px center;*/
+/*  background-size: 12px; !* Adjust size as necessary *!*/
+/*}*/
+
+.select-container {
+  position: relative;
+  display: inline-block;
+  width: 20%;
+}
+
+.form-select {
+  width: 100%;
+  padding: 8px 30px 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-appearance: none; /* Remove default styling */
+  -moz-appearance: none;
+  appearance: none;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  position: relative;
+  background-color: white;
+}
+
+.select-container i {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none; /* Makes click events pass through to the select */
+  color: #333; /* Adjust as needed */
+}
+
+/* Adjust focus style as needed */
+.form-select:focus {
+  outline: none;
+  border-color: #007bff;
+}

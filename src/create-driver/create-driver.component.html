@@ -13,6 +13,24 @@
   <div class="form-field">
     <input type="text" formControlName="lastName" placeholder="Last Name">
   </div>
+  <div class="form-field password-container">
+    <input [type]="hidePassword ? 'password' : 'text'" formControlName="password" class="form-control" placeholder="Password">
+    <i (click)="togglePasswordVisibility()" [class]="hidePassword ? 'fas fa-eye password-icon' : 'fas fa-eye-slash password-icon'"></i>
+  </div>
+  <div class="form-field">
+    <input type="password" formControlName="confirmPassword" class="form-control" placeholder="Confirm Password">
+    <!-- Conditionally displayed label -->
+    <label *ngIf="driverForm.get('confirmPassword')?.touched && driverForm.hasError('notMatched', 'confirmPassword')" class="error-label">
+      Passwords do not match
+    </label>
+  </div>
+  <div class="form-field">
+    <select formControlName="sex">
+      <option value="" disabled selected>Select your sex</option>
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+    </select>
+  </div>
   <div class="form-field">
     <input type="text" formControlName="address" placeholder="Address">
   </div>
@@ -21,9 +39,6 @@
   </div>
   <div class="form-field">
     <input type="text" formControlName="carBrand" placeholder="Car Brand">
-  </div>
-  <div class="form-field">
-    <input type="text" readonly formControlName="type" placeholder="" [value]="driver">
   </div>
   <button type="submit" [disabled]="!driverForm.valid">Add Driver</button>
 </form>

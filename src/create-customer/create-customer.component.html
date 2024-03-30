@@ -1,6 +1,6 @@
 <div class="signup-header">
-  <h1>Signup as Driver</h1>
-  <h2>Drive with us, extend your financial freedom</h2>
+  <h1>You're almost there 🎉</h1>
+  <h2>Enjoy flexible fares while commuting.</h2>
 </div>
 
 <form [formGroup]="UserForm" (ngSubmit)="onSubmit()" class="driver-form">
@@ -17,7 +17,34 @@
     <input type="text" formControlName="address" placeholder="Address">
   </div>
   <div class="form-field">
-    <input type="text" readonly formControlName="type" placeholder="" [value]="customer">
+    <input type="text" formControlName="email" placeholder="Email">
   </div>
-  <button type="submit" [disabled]="!UserForm.valid">Add Driver</button>
+  <div class="form-field password-container">
+    <input [type]="hidePassword ? 'password' : 'text'" formControlName="password" class="form-control" placeholder="Password">
+    <i (click)="togglePasswordVisibility()" [class]="hidePassword ? 'fas fa-eye password-icon' : 'fas fa-eye-slash password-icon'"></i>
+  </div>
+  <div class="form-field">
+    <input type="password" formControlName="confirmPassword" class="form-control" placeholder="Confirm Password">
+    <!-- Conditionally displayed label -->
+    <label *ngIf="UserForm.get('confirmPassword')?.touched && UserForm.hasError('notMatched', 'confirmPassword')" class="error-label">
+      Passwords do not match
+    </label>
+  </div>
+  <div class="form-field select-container">
+    <select formControlName="sex" class="form-select">
+      <option value="" disabled selected>Select your sex</option>
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+    </select>
+    <i class="fas fa-chevron-down"></i>
+  </div>
+  <div class="form-field select-container">
+    <select formControlName="isOnlyMySexAllowed" class="form-select">
+      <option value="" disabled selected>My sex only</option>
+      <option value="true">Yes</option>
+      <option value="false">No</option>
+    </select>
+    <i class="fas fa-chevron-down"></i>
+  </div>
+  <button type="submit" [disabled]="!UserForm.valid">Join</button>
 </form>
