@@ -3,8 +3,8 @@
     <!-- Dashboard Content Here -->
     <h2>Dashboard</h2>
     <div class="dashboard">
-      <div class="message-bar">
-        <p>{{ notification.message }}</p>
+      <div class="message-bar"  *ngIf="notification?.type === 'New trip' || 'General Message'">
+        <p>{{ notification.message }} </p>
         <button mat-raised-button color="primary" (click)="acceptTrip()" *ngIf="notification?.type === 'New trip'">Accept</button>
         <button mat-raised-button color="warn" (click)="declineTrip()" *ngIf="notification?.type === 'New trip'">Decline</button>
       </div>
