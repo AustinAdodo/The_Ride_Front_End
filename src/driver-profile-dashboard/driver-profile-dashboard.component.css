@@ -1,0 +1,56 @@
+.dashboard {
+  margin: 20px;
+}
+
+.message-bar {
+  background-color: #f0f0f0;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.info-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.info-section > div {
+  flex: 1;
+  min-width: 200px;
+}
+
+mat-icon {
+  color: gold;
+}
+.profile {
+  display: flex;
+  justify-content: space-between;
+}
+
+.photo-container {
+  max-width: 200px;
+}
+
+.driver-photo {
+  width: 100%;
+  border-radius: 50%; /* Makes the photo circular */
+  border: 3px solid #007bff; /* A blue border for aesthetics */
+}
+
+.info {
+  flex-grow: 1;
+  padding-left: 20px;
+}
+
+mat-icon {
+  color: gold;
+}
+
+.incoming-payments ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.incoming-payments li {
+  margin-bottom: 5px;
+}
