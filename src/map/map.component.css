@@ -1,0 +1,11 @@
+#map {
+  width: 100%;
+  height: 400px;
+  max-width: 100%; /* Ensures map does not exceed the width of its container */
+}
+
+/* Ensure body or containing elements do not allow overflow */
+body, html {
+  max-width: 100%;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
