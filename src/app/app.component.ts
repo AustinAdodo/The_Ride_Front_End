@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 import {AuthService} from '../services/AuthService';
 import {filter} from "rxjs";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,7 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
     CommonModule,
     RouterOutlet,
     RouterLink,
-    HttpClientModule
+    HttpClientModule,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
