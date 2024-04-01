@@ -5,10 +5,11 @@ import {CommonModule} from "@angular/common";
 import {DriverService} from '../services/DriverService';
 import {environment} from '../environments/environment';
 import {isPlatformBrowser} from '@angular/common';
+import {join} from "node:path";
 
 const map_Box_key = environment.mapBoxGlAccessToken;
 
-//User lat: 3.3581 and long: 6.6144
+//User lat: 3.3581, 3.349149 and long: 6.6144, 6.605874
 
 @Component({
   selector: 'app-map',
@@ -23,11 +24,15 @@ const map_Box_key = environment.mapBoxGlAccessToken;
 export class MapComponent implements OnInit, AfterViewInit {
   //Implement AfterViewInit
   isMapBoxMapToBeDisplayed: boolean = true;
+  isDefaultMarkerDisplayed: boolean = false;
   map: mapboxgl.Map | undefined;
   styleURL = 'mapbox://styles/mapbox/streets-v11';
   accessToken = map_Box_key;
   cars: Car[] = [];
 
+  /**
+   * PLATFORM_ID to ensure parsed environments are detected
+   */
   constructor(private driverService: DriverService, @Inject(PLATFORM_ID) private platformId: Object) {
   }
 
@@ -69,8 +74,17 @@ export class MapComponent implements OnInit, AfterViewInit {
 
   private createCarMarker(car: Car): mapboxgl.Marker {
     if (isPlatformBrowser(this.platformId)) {
-      const el = document.createElement('div');
-      el.innerHTML = `
+      if (this.isDefaultMarkerDisplayed) {
+        // pins: default Mapbox marker
+        return new mapboxgl.Marker({color: car.color})
+          .setLngLat([car.lng, car.lat])
+          .setPopup(new mapboxgl.Popup({offset: 25})
+            .setHTML('<h3>' + car.color + ' Car</h3>'));
+      }
+      //cars
+      else {
+        const el = document.createElement('div');
+        el.innerHTML = `
       <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="fill: ${car.color};">
         <rect x="20" y="40" width="60" height="20" rx="5"/>
         <circle cx="30" cy="70" r="10"/>
@@ -79,33 +93,35 @@ export class MapComponent implements OnInit, AfterViewInit {
         <circle cx="70" cy="30" r="10"/>
       </svg>
     `;
-      //el.className = 'fa fa-car';
-      // el.innerText = '🚗';
-      el.style.fontSize = '40px';
-      el.style.color = car.color;
-      el.style.textShadow = '0 0 3px #000';
-      el.style.backgroundSize = 'cover';
-      el.style.width = '50px';
-      el.style.height = '50px';
-      el.style.borderRadius = '50%';
-      el.style.cursor = 'pointer';
-      return new mapboxgl.Marker(el).setLngLat([car.lng, car.lat]);
+        //el.className = 'fa fa-car';
+        // el.innerText = '🚗';
+        el.style.fontSize = '40px';
+        el.style.color = car.color;
+        el.style.textShadow = '0 0 3px #000';
+        el.style.backgroundSize = 'cover';
+        el.style.width = '50px';
+        el.style.height = '50px';
+        el.style.borderRadius = '50%';
+        el.style.cursor = 'pointer';
+        return new mapboxgl.Marker(el).setLngLat([car.lng, car.lat]);
+      }
     }
     return new mapboxgl.Marker();
   }
 
   private addCarsToMap() {
-    const targetCar: Car = {lat: 3.3581, lng: 6.6144, color: this.getRandomColor()};
-    targetCar.marker = this.createCarMarker(targetCar).addTo(this.map!);
+    const targetCar: Car = {lat: 3.349149, lng: 6.605874, color: this.getRandomColor()};
     this.cars.push(targetCar);
-    for (let i = 0; i < 15; i++) {
+    targetCar.marker = this.createCarMarker(targetCar).addTo(this.map!);
+    for (let i = 0; i < 10; i++) {
       const randomLat = 3.358 + ((Math.random() * 0.001) - 0.0005);
       const randomLng = 6.614 + ((Math.random() * 0.001) - 0.0005);
       const randomColor = this.getRandomColor();
       const car: Car = {lat: randomLat, lng: randomLng, color: randomColor};
-      car.marker = this.createCarMarker(car).addTo(this.map!);
       this.cars.push(car);
+      car.marker = this.createCarMarker(car).addTo(this.map!);
     }
+    //console.log(JSON.stringify(this.cars, null, 2));
   }
 
   private simulateCarMovement() {
@@ -121,7 +137,7 @@ export class MapComponent implements OnInit, AfterViewInit {
           car.marker.setLngLat([car.lng, car.lat]);
         }
       });
-    }, 1000);
+    }, 2000);
   }
 
   /**
@@ -157,5 +173,5 @@ interface Car {
   lat: number;
   lng: number;
   color: string;
-  marker?: mapboxgl.Marker; // Optional marker property
+  marker?: mapboxgl.Marker;
 }
