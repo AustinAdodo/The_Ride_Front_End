@@ -3,16 +3,16 @@
     <!-- Dashboard Content Here -->
     <h2>Dashboard</h2>
     <div class="dashboard">
-      <div class="message-bar"  *ngIf="notification?.type === 'New trip' || 'General Message'">
-        <p>{{ notification.message }} </p>
-        <button mat-raised-button color="primary" (click)="acceptTrip()" *ngIf="notification?.type === 'New trip'">Accept</button>
-        <button mat-raised-button color="warn" (click)="declineTrip()" *ngIf="notification?.type === 'New trip'">Decline</button>
+      <div class="message-bar" *ngIf="notification?.type === 'New trip' || 'General Message'">
+        <p style="color: #4CAF50">{{ notification.message }} </p>
+        <button (click)="acceptTrip()" *ngIf="notification?.type === 'New trip'">Accept</button>
+        <button (click)="declineTrip()" *ngIf="notification?.type === 'New trip'">Decline</button>
       </div>
-
       <h2>{{ driver.firstname }}'s Dashboard</h2>
       <div class="username">Username: {{ driver.username }}</div>
 
       <div class="info-section">
+
         <div class="recent-trips">
           <h3>Recent Trips</h3>
           <ul>
@@ -45,6 +45,7 @@
         <div class="total-trips">
           <h3>Total Trips: {{ driver.totalTrips }}</h3>
         </div>
+
       </div>
     </div>
   </mat-tab>
@@ -53,25 +54,25 @@
     <h2>Profile</h2>
     <div class="profile">
       <div class="photo-container">
-        <img src="path_to_drivers_photo" alt="Driver's Photo" class="driver-photo">
+        <img src="./assets/mastercard.png" alt="Driver's Photo" class="driver-photo">
       </div>
       <div class="info">
-        <h2>{{driver.firstname}} {{driver.middleName}} {{driver.lastname}}</h2>
-        <p><strong>Username:</strong> {{driver.username}}</p>
-        <p><strong>Car Model:</strong> {{driver.carModel}}, <strong>Color:</strong> {{driver.carColor}}</p>
-        <p><strong>Vehicle Plate Number:</strong> {{driver.vehiclePlateNumber}}</p>
-        <p><strong>Vehicle Registration Status:</strong> {{driver.vehicleRegistrationStatus}}</p>
-        <p><strong>Registration Status:</strong> {{driver.registrationStatus}}</p>
+        <h2>{{ driver.firstname }} {{ driver.middleName }} {{ driver.lastname }}</h2>
+        <p><strong>Username:</strong> {{ driver.username }}</p>
+        <p><strong>Car Model:</strong> {{ driver.carModel }}, <strong>Color:</strong> {{ driver.carColor }}</p>
+        <p><strong>Vehicle Plate Number:</strong> {{ driver.vehiclePlateNumber }}</p>
+        <p><strong>Vehicle Registration Status:</strong> {{ driver.vehicleRegistrationStatus }}</p>
+        <p><strong>Registration Status:</strong> {{ driver.registrationStatus }}</p>
         <p>
           <strong>Ratings:</strong>
           <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
             <mat-icon>{{ star <= driver.rating ? 'star' : 'star_border' }}</mat-icon>
           </ng-container>
         </p>
-        <p><strong>Total Earnings:</strong> {{driver.totalEarnings | currency}}</p>
-        <p><strong>Tips:</strong> {{driver.tips | currency}}</p>
-        <p><strong>Total Trips:</strong> {{driver.totalTrips}}</p>
-        <p><strong>Tax ID:</strong> {{driver.taxID}}</p>
+        <p><strong>Total Earnings:</strong> {{ driver.totalEarnings | currency }}</p>
+        <p><strong>Tips:</strong> {{ driver.tips | currency }}</p>
+        <p><strong>Total Trips:</strong> {{ driver.totalTrips }}</p>
+        <p><strong>Tax ID:</strong> {{ driver.taxID }}</p>
 
         <!-- Incoming Payments -->
         <div class="incoming-payments">

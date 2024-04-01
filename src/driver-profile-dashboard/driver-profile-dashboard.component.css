@@ -54,3 +54,34 @@ mat-icon {
 .incoming-payments li {
   margin-bottom: 5px;
 }
+
+/* Adjust the non-"Book"*/
+button:not(.Book) {
+  background-color: violet;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Adjust button spacing within the form, added because this form has just 2 buttons */
+div.message-bar button {
+  margin-right: 10px;
+}
+
+.info-section {
+  display: flex;
+  flex-wrap: wrap; /* Allows child elements to wrap if needed */
+}
+
+.recent-trips {
+  flex: 0 0 40%; /* This sets the "Recent Trips" div to take up 40% of the parent container's width */
+  /* The first 0 is for flexGrow, the second 0 is for flexShrink, and 40% is the flexBasis */
+}
+
+/* Assuming you have other divs that you want to share the remaining space equally */
+.info-section > div:not(.recent-trips) {
+  flex: 1; /* This allows other divs to share the remaining space equally */
+}
+

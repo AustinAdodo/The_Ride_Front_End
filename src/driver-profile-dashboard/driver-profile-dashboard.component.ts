@@ -2,22 +2,21 @@ import {Component, OnInit} from '@angular/core';
 import {WebSocketService} from "../services/WebSocketService";
 import {MatIcon} from "@angular/material/icon";
 import {Payload} from "../payload/Payload";
-import {CurrencyPipe, NgForOf, NgIf} from "@angular/common";
+import {CommonModule, CurrencyPipe} from "@angular/common";
 import {MatButton} from "@angular/material/button";
 import {MatTab, MatTabGroup, MatTabsModule} from "@angular/material/tabs";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @Component({
   selector: 'app-driver-profile-dashboard',
   standalone: true,
-  imports: [
+  imports: [CommonModule,
     MatIcon,
     CurrencyPipe,
     MatButton,
-    NgIf,
-    NgForOf,
     MatTabGroup,
     MatTab,
-    MatTabsModule
+    MatTabsModule,
   ],
   templateUrl: './driver-profile-dashboard.component.html',
   styleUrl: './driver-profile-dashboard.component.css'
@@ -31,20 +30,20 @@ export class DriverProfileDashboardComponent implements OnInit {
 
   //get the current logged in driver
   driver = {
-    firstname: 'John',
-    username: 'johnDoe',
+    firstname: 'Lawrence',
+    username: 'odia@example.com',
     rating: 4.5,
     totalEarnings: 12000,
     tips: 1500,
     totalTrips: 120,
     middleName: '',
-    lastname: "",
-    carModel: '',
-    vehiclePlateNumber: "",
-    carColor: "",
-    vehicleRegistrationStatus: "",
-    registrationStatus: "",
-    taxID: "",
+    lastname: "Driver",
+    carModel: 'Audi Rs7',
+    vehiclePlateNumber: "XCC9-0",
+    carColor: "Blue",
+    vehicleRegistrationStatus: "Registered",
+    registrationStatus: "Complete",
+    taxID: "NMI555789",
   };
 
   notification = {
@@ -59,8 +58,8 @@ export class DriverProfileDashboardComponent implements OnInit {
   ];
 
   incomingPayments = [
-    { amount: 300, date: '2023-05-01' },
-    { amount: 450, date: '2023-05-02' }
+    {amount: 300, date: '2023-05-01'},
+    {amount: 450, date: '2023-05-02'}
   ];
 
   ngOnInit(): void {
