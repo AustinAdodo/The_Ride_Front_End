@@ -30,7 +30,6 @@ export class LoginComponent {
   }
 
   login() {
-    console.log('inside login');
     const credentials = {
       username: this.username,
       password: this.password
@@ -40,7 +39,7 @@ export class LoginComponent {
         () => {
           this.authService.login();
           console.log('Attempting to navigate to /app-map');
-          this.router.navigate(['/usermap']).then(success => {
+          this.router.navigate(['/home']).then(success => {
             if (success) {
               console.log('Navigation to /app-map successful');
             } else {
