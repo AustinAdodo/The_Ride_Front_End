@@ -6,12 +6,14 @@ import {Subject} from 'rxjs';
 import {Payload} from "../payload/Payload";
 import {environment} from "../environments/environment";
 
-// npm install --save-dev @types/stompjs
-//npm install --save-dev @types/sockjs-client
-
 @Injectable({
   providedIn: 'root',
 })
+
+/**
+ * npm install --save-dev @types/stompjs
+ * npm install --save-dev @types/sockjs-client
+ */
 export class WebSocketService {
   private _stompClient!: Client;
   private userMessageSubject = new Subject<Payload>();
@@ -41,11 +43,10 @@ export class WebSocketService {
     this._stompClient.subscribe('/topic/SystemMessages', (message: { body: string }) => {
       if (message.body) {
         const response = JSON.parse(message.body);
-        // Handle user or system messages
-        // Example: this.handleUserOrSystemMessage(response);
       }
     });
   }
+
   private subscribeToUserMessages() {
     this._stompClient.subscribe('/topic/customer', (stream) => {
       if (stream.body) {
@@ -56,10 +57,10 @@ export class WebSocketService {
       }
     });
   }
+
   public sendDriverAcceptance(driverPayload: Payload) {
-    const message = driverPayload.message;
-    driverPayload.topic='driverUpdates';
-    this._stompClient.send('/app/acceptTrip', {}, JSON.stringify({...driverPayload, message}));
+    driverPayload.topic = 'driverUpdates';
+    this._stompClient.send('/app/acceptTrip', {}, JSON.stringify({...driverPayload}));
   }
 
   /**
@@ -78,12 +79,13 @@ export class WebSocketService {
   }
 
   public sendCustomerTripRequest(userPayload: Payload) {
-    const message = userPayload.message;
-    userPayload.topic ='customer';
-    this._stompClient.send('/app/trip/Request', {}, JSON.stringify({...userPayload, message}));
+    userPayload.topic = 'customer';
+    this._stompClient.send('/app/trip/Request', {}, JSON.stringify({...userPayload}));
   }
 
- //other Actions
+  /**
+   * other Actions
+   */
   private mapToDriverPayload(data: Payload): Payload {
     const payload = new Payload();
     payload.name = data.name || "Driver";
