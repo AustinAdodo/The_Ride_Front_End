@@ -15,15 +15,16 @@ import {environment} from "../environments/environment";
 export class WebSocketService {
   private _stompClient!: Client;
   private userMessageSubject = new Subject<Payload>();
+  private driverMessageSubject = new Subject<Payload>();
   public userUpdateMessages = this.userMessageSubject.asObservable();
+  public driverUpdateMessages = this.driverMessageSubject.asObservable();
 
   constructor() {
     this.initializeWebSocketConnection();
   }
 
-
   initializeWebSocketConnection() {
-    const serverUrl = environment.websocketurl;
+    const serverUrl = environment.webSocketUrl;
     const ws = new SockJS(serverUrl);
     this._stompClient = Stomp.over(ws);
     this._stompClient.connect({}, () => {
@@ -33,7 +34,9 @@ export class WebSocketService {
     });
   }
 
-  //Driver Actions
+  /**
+   * Driver Actions
+   */
   private subscribeToSystemMessages() {
     this._stompClient.subscribe('/topic/SystemMessages', (message: { body: string }) => {
       if (message.body) {
@@ -45,39 +48,38 @@ export class WebSocketService {
   }
   private subscribeToUserMessages() {
     this._stompClient.subscribe('/topic/customer', (stream) => {
-      if (stream.body) { // Assuming the message is contained in `stream.body`
+      if (stream.body) {
         const responseJson = JSON.parse(stream.body);
         const payloadInstance = new Payload(responseJson);
-        // Now you can use payloadInstance which is an instance of Payload
+        console.log("Successfully subscribed to topic /topic/customer")
         this.userMessageSubject.next(payloadInstance);
       }
     });
   }
   public sendDriverAcceptance(driverPayload: Payload) {
-    const message = `Driver is on ${driverPayload.sex === 'male' ? 'his' : 'her'} way`;
+    const message = driverPayload.message;
+    driverPayload.topic='driverUpdates';
     this._stompClient.send('/app/acceptTrip', {}, JSON.stringify({...driverPayload, message}));
   }
 
-  //User Actions
+  /**
+   * User Actions
+   */
   private subscribeToDriverUpdates() {
     this._stompClient.subscribe('/topic/driverUpdates', (message: { body: string }) => {
       if (message.body) {
         const response = JSON.parse(message.body);
         const driverPayload = this.mapToDriverPayload(response);
         if (driverPayload.hasAccepted) {
-          // Now, driverPayload contains your mapped data and can be used accordingly
-          // For example, you could pass this payload to a method that displays the modal:
-          this.showDriverModal(driverPayload);
+          this.driverMessageSubject.next(driverPayload);
         }
       }
     });
   }
-  private showDriverModal(driverPayload: Payload) {
-    // Modal display logic goes here
-    // Example: console.log(`Driver ${driverPayload.name} is on the way.`);
-  }
+
   public sendCustomerTripRequest(userPayload: Payload) {
     const message = userPayload.message;
+    userPayload.topic ='customer';
     this._stompClient.send('/app/trip/Request', {}, JSON.stringify({...userPayload, message}));
   }
 
@@ -88,14 +90,9 @@ export class WebSocketService {
     payload.phoneNumber = data.phoneNumber || "0501";
     payload.rating = data.rating || 5.0;
     payload.hasAccepted = data.hasAccepted || true;
-    payload.message = data.message || "Your Driver is on his way";
+    payload.message = data.message || "No Message";
     payload.photoUrl = data.photoUrl || '';
     return payload;
   }
-
-
-
-
-
 
 }
