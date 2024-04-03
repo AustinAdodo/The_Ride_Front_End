@@ -1,10 +1,26 @@
-<h2 mat-dialog-title>Your Driver</h2>
+<h2 mat-dialog-title style="text-align: center">Your Driver</h2>
 <mat-dialog-content>
-  <p>Name: {{data.name}}</p>
-  <p>Rating: {{data.rating}}</p>
-  <img [src]="data.photourl" alt="Driver's Photo">
-  <p>{{data.message}}</p>
+  <p>Name: {{ data.name }}</p>
+  <p>Rating:
+    <span class="rating">
+  <i class="fas fa-star" *ngFor="let star of getRatingArray()"></i>
+</span>
+  </p>
+  <p>{{ data.message }}</p>
 </mat-dialog-content>
-<mat-dialog-actions>
-  <button mat-button mat-dialog-close>Close</button>
+<mat-dialog-actions class="dialog-actions-centered">
+  <button mat-button (click)="closeModal()">OK</button>
 </mat-dialog-actions>
+<div mat-dialog-content class="modal-content">
+  <h2>{{ data.name }}</h2>
+  <img [src]="data.photoUrl" alt="Driver's Photo">
+  <div class="phone-info">
+    <p>Phone: {{ data.phoneNumber }}</p>
+    <button mat-icon-button (click)="callDriver(data.phoneNumber)">
+      <mat-icon>call</mat-icon>
+    </button>
+  </div>
+  <p>Total trips: 245</p>
+</div>
+<div mat-dialog-actions align="end">
+</div>

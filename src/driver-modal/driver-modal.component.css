@@ -1,0 +1,65 @@
+/* Im overriding the position property of the .mat-mdc-dialog-container*/
+/*.mat-mdc-dialog-container {*/
+/*  position: fixed !important; !* Use fixed positioning *!*/
+/*  top: 10px !important;*/
+/*  left: 50% !important;*/
+/*  transform: translateX(-50%) !important; !* Adjust horizontal position *!*/
+/*}*/
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center items vertically */
+  text-align: center; /* Center text */
+}
+
+/* Style the image to not be too large */
+img {
+  max-width: 100px; /* Adjust the size as necessary */
+  border-radius: 50%; /* Makes the image round */
+  margin: 20px 0; /* Adds some space above and below the image */
+}
+
+/* Style the rating to display stars */
+.rating {
+  display: inline-flex;
+  align-items: center;
+}
+
+.fas.fa-star{
+  color: gold; /* Gold color for stars */
+  margin-right: 4px;
+}
+
+/* Style for the call button to make it more prominent */
+button[mat-icon-button] {
+  background-color: green;
+  color: white;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* General button styling for a professional look */
+button[mat-button] {
+  background-color: #007bff; /* Example blue color */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[mat-button]:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+.dialog-actions-centered {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  width: 100%;
+}
