@@ -24,7 +24,7 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 ## Message Brokering
 
-A custom webocket service has been developed to help with message brockering with multipe instances of the application. The brockering service interacts with custom channels in RabbitMQ, that sits between the service and the back-end.
+A custom websocket service has been developed to help with message brockering on multipe instances of the application. The brockering service interacts with custom channels in RabbitMQ, that sits between the service and the back-end.
 
 ## Further help
 
