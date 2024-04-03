@@ -3,10 +3,13 @@ import {
   MAT_DIALOG_DATA,
   MatDialogActions,
   MatDialogClose,
-  MatDialogContent,
+  MatDialogContent, MatDialogRef,
   MatDialogTitle
 } from '@angular/material/dialog';
-import {MatButton} from "@angular/material/button";
+import {MatButton, MatIconButton} from "@angular/material/button";
+import {MatIcon} from "@angular/material/icon";
+import {Payload} from "../payload/Payload";
+import {NgForOf} from "@angular/common";
 
 //ng add @angular/material
 @Component({
@@ -18,11 +21,28 @@ import {MatButton} from "@angular/material/button";
     MatDialogContent,
     MatDialogActions,
     MatButton,
-    MatDialogClose
+    MatDialogClose,
+    MatIcon,
+    MatIconButton,
+    NgForOf
   ],
   standalone: true
 })
 export class DriverModalComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
+  constructor(public dialogRef: MatDialogRef<DriverModalComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: Payload) {}
+
+  closeModal(): void {
+    this.dialogRef.close();
+  }
+
+  callDriver(phoneNumber: string): void {
+    console.log(`Calling ${phoneNumber}...`);
+    this.dialogRef.close();
+  }
+
+  getRatingArray() {
+    return Array(Math.round(this.data.rating)).fill(0).map((x, i) => i);
+  }
 }
 

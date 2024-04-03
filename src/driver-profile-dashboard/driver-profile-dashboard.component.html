@@ -5,8 +5,6 @@
     <div class="dashboard">
       <div class="message-bar" *ngIf="notification?.type === 'New trip' || 'General Message'">
         <p style="color: #4CAF50; text-align: center">{{ notification.message }} </p>
-<!--        <button (click)="acceptTrip()" *ngIf="notification?.type === 'New trip'">Accept</button>-->
-<!--        <button (click)="declineTrip()" *ngIf="notification?.type === 'New trip'">Decline</button>-->
         <form [formGroup]="DriverForm" (ngSubmit)="acceptTrip()" class="user-dashboard-form">
           <div class="form-submit">
             <button type="submit" *ngIf="notification?.type === 'New trip'">Accept</button>
@@ -24,7 +22,8 @@
           <div class="form-field" [hidden]="shouldBeHidden"><input type="text" [hidden]="shouldBeHidden"
                                                                    formControlName="rating" placeholder="rating"></div>
           <div class="form-field" [hidden]="shouldBeHidden"><input type="text" [hidden]="shouldBeHidden"
-                                                                   formControlName="photograph" placeholder="photograph">
+                                                                   formControlName="photograph"
+                                                                   placeholder="photograph">
           </div>
         </form>
       </div>
@@ -41,10 +40,7 @@
         </div>
 
         <div class="ratings">
-          <h3>Ratings</h3>
-          <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
-            <mat-icon>{{ star <= driver.rating ? 'star' : 'star_border' }}</mat-icon>
-          </ng-container>
+          <h3>Ratings <span class="rating"> <i class="fas fa-star" *ngFor="let star of getRatingArray()"></i></span></h3>
         </div>
 
         <div class="earnings">

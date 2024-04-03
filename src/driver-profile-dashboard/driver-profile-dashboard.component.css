@@ -85,3 +85,7 @@ div.message-bar button {
   flex: 1; /* This allows other divs to share the remaining space equally */
 }
 
+.fas.fa-star{
+  color: gold; /* Gold color for stars */
+  margin-right: 4px;
+}
