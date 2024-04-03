@@ -4,9 +4,29 @@
     <h2>Dashboard</h2>
     <div class="dashboard">
       <div class="message-bar" *ngIf="notification?.type === 'New trip' || 'General Message'">
-        <p style="color: #4CAF50">{{ notification.message }} </p>
-        <button (click)="acceptTrip()" *ngIf="notification?.type === 'New trip'">Accept</button>
-        <button (click)="declineTrip()" *ngIf="notification?.type === 'New trip'">Decline</button>
+        <p style="color: #4CAF50; text-align: center">{{ notification.message }} </p>
+<!--        <button (click)="acceptTrip()" *ngIf="notification?.type === 'New trip'">Accept</button>-->
+<!--        <button (click)="declineTrip()" *ngIf="notification?.type === 'New trip'">Decline</button>-->
+        <form [formGroup]="DriverForm" (ngSubmit)="acceptTrip()" class="user-dashboard-form">
+          <div class="form-submit">
+            <button type="submit" *ngIf="notification?.type === 'New trip'">Accept</button>
+            <button type="button" (click)="declineTrip()" *ngIf="notification?.type === 'New trip'">Decline</button>
+          </div>
+          <div class="form-field" [hidden]="shouldBeHidden">
+            <input type="text" [hidden]="shouldBeHidden" formControlName="sex" placeholder="sex">
+          </div>
+          <div class="form-field" [hidden]="shouldBeHidden">
+            <input type="text" [hidden]="shouldBeHidden" formControlName="firstName" placeholder="First Name">
+          </div>
+          <div class="form-field" [hidden]="shouldBeHidden">
+            <input type="text" [hidden]="shouldBeHidden" formControlName="lastName" placeholder="Last Name">
+          </div>
+          <div class="form-field" [hidden]="shouldBeHidden"><input type="text" [hidden]="shouldBeHidden"
+                                                                   formControlName="rating" placeholder="rating"></div>
+          <div class="form-field" [hidden]="shouldBeHidden"><input type="text" [hidden]="shouldBeHidden"
+                                                                   formControlName="photograph" placeholder="photograph">
+          </div>
+        </form>
       </div>
       <h2>{{ driver.firstname }}'s Dashboard</h2>
       <div class="username">Username: {{ driver.username }}</div>
