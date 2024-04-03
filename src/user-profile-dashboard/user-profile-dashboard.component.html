@@ -4,20 +4,40 @@
   <section class="book-trip">
     <h3>Book a Trip</h3>
     <!-- Button to show form -->
-    <button class="Book" *ngIf="!showForm" (click)="showForm = true">Book</button>
+    <button class="Book" *ngIf="!showForm" (click)="showForm=true">Book</button>
     <!-- Booking form -->
-    <form *ngIf="showForm" (ngSubmit)="onSubmit()">
+    <form *ngIf="showForm" [formGroup]="UserForm" (ngSubmit)="sendCustomerTripRequest()" class="user-dashboard-form">
       <label for="destination">Destination:</label>
-      <input type="text" id="destination" name="destination" placeholder="Type here">
-      <button type="submit">Book</button>
-      <button type="button" (click)="showForm = false">Cancel</button>
+      <div class="form-field location-field" [hidden]="shouldBeHidden">
+        <input type="text" [hidden]="shouldBeHidden" formControlName="Location" placeholder="Location">
+      </div>
+      <div class="form-field">
+        <input type="text" id="destination" formControlName="Destination" placeholder="Destination">
+      </div>
+      <div class="form-field" [hidden]="shouldBeHidden">
+        <input type="text" [hidden]="shouldBeHidden" formControlName="sex" placeholder="sex">
+      </div>
+      <div class="form-field" [hidden]="shouldBeHidden">
+        <input type="text" [hidden]="shouldBeHidden" formControlName="firstName" placeholder="First Name">
+      </div>
+      <div class="form-field" [hidden]="shouldBeHidden">
+        <input type="text" [hidden]="shouldBeHidden" formControlName="lastName" placeholder="Last Name">
+      </div>
+      <div class="form-field" [hidden]="shouldBeHidden"><input type="text" [hidden]="shouldBeHidden"
+                                                               formControlName="rating" placeholder="rating"></div>
+      <div class="form-field" [hidden]="shouldBeHidden"><input type="text" [hidden]="shouldBeHidden"
+                                                               formControlName="photograph" placeholder="photograph">
+      </div>
+      <div class="form-submit">
+        <button type="submit" [disabled]="!UserForm.valid">Book</button>
+        <button type="button" (click)="showForm = false">Cancel</button>
+      </div>
     </form>
   </section>
 
   <section class="recent-trips">
-    <h3>
-      <p> Recent Trips
-        <img ngSrc="{{Rating}}" title="rating" alt="" style="width: 15px; height: inherit;" fill></p>
+    <h3> Recent Trips <span style="float: right" class="rating">Rating: <i class="fas fa-star"
+                                                                           *ngFor="let star of getRatingArray()"></i></span>
     </h3>
     <ul>
       <li *ngFor="let trip of recentTrips">
@@ -38,8 +58,9 @@
   <section class="payments">
     <h3>Payments</h3>
     <p class="line-indicator">
-      <img ngSrc="{{ mastercard }}" title="mastercard" alt="" style="height: 100%; width: 4px; vertical-align: middle; padding-right: 15px" fill>
-  <span style="padding-right: 6px; display: inline-flex; align-items: center;">
+      <img ngSrc="{{ mastercard }}" title="mastercard" alt=""
+           style="height: 100%; width: 4px; vertical-align: middle; padding-right: 15px" fill>
+      <span style="padding-right: 6px; display: inline-flex; align-items: center;">
     Card  ****3417
     <a class="pill" target="_blank" rel="noopener" title="Manage">
       <svg
@@ -55,6 +76,7 @@
           </svg>
     </a>
   </span>
-  </p>
+    </p>
   </section>
+
 </div>

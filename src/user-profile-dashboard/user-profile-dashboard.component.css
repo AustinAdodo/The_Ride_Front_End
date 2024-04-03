@@ -115,6 +115,10 @@ form button {
   justify-content: space-between;
 }
 
+.fas.fa-star{
+  color: gold; /* Gold color for stars */
+  margin-right: 4px;
+}
 
 
 /*!* To target only the first button (if you have more buttons in the future), */
