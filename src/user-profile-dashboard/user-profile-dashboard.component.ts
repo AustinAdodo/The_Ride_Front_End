@@ -46,7 +46,7 @@ export class UserProfileDashboardComponent implements OnInit, OnDestroy {
   showForm: boolean = false;
   mastercard: string = '/assets/mastercard.png';
   shouldBeHidden: boolean = true;
-  // private userdata: Payload = new Payload({sex:'male',rating:5.0,name:'Adodo Austin'});
+  private userdata: Payload = new Payload({sex:'male',rating:5.0,name:'Adodo Austin'});
 
   UserForm = new FormGroup({
     firstName: new FormControl('Austin',),
@@ -117,7 +117,7 @@ export class UserProfileDashboardComponent implements OnInit, OnDestroy {
   }
 
   getRatingArray() {
-    return Array(Math.round(5.0)).fill(0).map((x, i) => i);
+    return Array(Math.round(this.userdata.rating)).fill(0).map((x, i) => i);
   }
 
   ngOnDestroy() {
