@@ -125,10 +125,9 @@ button:disabled {
   top: 50%;
   transform: translateY(-50%);
   pointer-events: none; /* Makes click events pass through to the select */
-  color: #333; /* Adjust as needed */
+  color: #333;
 }
 
-/* Adjust focus style as needed */
 .form-select:focus {
   outline: none;
   border-color: #007bff;

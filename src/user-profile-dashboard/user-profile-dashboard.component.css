@@ -104,7 +104,7 @@ form button {
   display: inline-block;
   width: 2px;
   height: 100%;
-  background-color: black; /* Or any color */
+  background-color: black;
   margin-right: 15px;
   vertical-align: middle;
 }
@@ -120,6 +120,12 @@ form button {
   margin-right: 4px;
 }
 
+/* Mastercard image styling */
+img {
+  max-width: 20px;
+  border-radius: 50%; /* Makes the image round */
+  margin: 20px 0; /* Adds some space above and below the image */
+}
 
 /*!* To target only the first button (if you have more buttons in the future), */
 /*   you can use the :first-of-type pseudo-class *!*/

@@ -21,7 +21,7 @@
 
 .form-group input[type="email"],
 .form-group input[type="password"] {
-  width: 100%; /* Makes textboxes longer */
+  width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px; /* Optional: rounds the corners */

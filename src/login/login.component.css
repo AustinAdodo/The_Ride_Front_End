@@ -1,5 +1,5 @@
 .login-container {
-  max-width: 400px; /* Adjust width as needed */
+  max-width: 400px;
   margin: 0 auto;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional: adds shadow for better visibility */
@@ -21,7 +21,7 @@
 
 .form-group input[type="email"],
 .form-group input[type="password"] {
-  width: 100%; /* Makes textboxes longer */
+  width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px; /* Optional: rounds the corners */
@@ -57,7 +57,7 @@ button[type="submit"]:hover {
 button[ngIf] {
   width: 100%;
   padding: 10px;
-  background-color: #dc3545; /* Example color for the logout button */
+  background-color: #dc3545;
   color: white;
   border: none;
   border-radius: 4px; /* Optional: rounds the corners */
