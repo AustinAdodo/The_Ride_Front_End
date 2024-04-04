@@ -7,4 +7,4 @@ export const environment = {
   webSocketUrl:'http://localhost:8080/ws'
 };
 
-//sk.eyJ1IjoiYXVzdGluYWRvZG8iLCJhIjoiY2x1YjVxdXJmMHU1NzJrbzlqNTQ2ZTc2eiJ9.lTl6pfRaDUbaVEAFpJq17Q
+
