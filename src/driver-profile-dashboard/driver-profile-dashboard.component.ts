@@ -49,14 +49,14 @@ export class DriverProfileDashboardComponent implements OnInit, OnDestroy {
 
   //get the current logged in driver
   driver = {
-    firstname: 'Lawrence',
+    firstname: 'Austin',
     username: 'odia@example.com',
     rating: 5.0,
     totalEarnings: 12000,
     tips: 1500,
     totalTrips: 245,
     middleName: '',
-    lastname: "Driver",
+    lastname: "Good-driver",
     carModel: 'Audi Rs7',
     vehiclePlateNumber: "XCC9-0",
     carColor: "Blue",

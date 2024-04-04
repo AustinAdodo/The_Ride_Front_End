@@ -41,15 +41,13 @@ export class MapComponent implements OnInit, AfterViewInit {
    * latitude and longitude are randomly changed
    *
    */
-  ngOnInit(): void {
-    //this.getDrivers();
-  }
+  ngOnInit(): void {}
 
   ngAfterViewInit(): void {
     //this.initializeMap();
     if (isPlatformBrowser(this.platformId)) {
       this.initializeMap();
-      setTimeout(() => { // Use setTimeout to ensure it runs in the next event loop cycle after view initialization
+      setTimeout(() => { // I am using setTimeout to ensure it runs in the next event loop cycle after view initialization
         const marker = document.querySelector('.marker-class');
         if (marker) {
           const style = window.getComputedStyle(marker);
@@ -78,13 +76,7 @@ export class MapComponent implements OnInit, AfterViewInit {
         this.addCarsToMap();
         this.simulateCarMovement();
       });
-      this.map.on('click', function (e) {
-        // e.lngLat is the longitude, latitude geographical position of the event
-        const coordinates = e.lngLat;
-        console.log(`Longitude: ${coordinates.lng}, Latitude: ${coordinates.lat}`);
-        // Optionally, display this information to the user through the UI
-        alert(`Longitude: ${coordinates.lng}, Latitude: ${coordinates.lat}`);
-      });
+     //Onclick Testing goes here, removed after dev.
     }
   }
 
