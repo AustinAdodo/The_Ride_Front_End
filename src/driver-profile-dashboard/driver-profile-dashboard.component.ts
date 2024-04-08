@@ -7,6 +7,8 @@ import {MatButton} from "@angular/material/button";
 import {MatTab, MatTabGroup, MatTabsModule} from "@angular/material/tabs";
 import {Subscription} from "rxjs";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import {DriverService} from "../services/DriverService";
+import {UserDataPayload} from "../payload/UserDataPayload";
 
 @Component({
   selector: 'app-driver-profile-dashboard',
@@ -28,8 +30,10 @@ export class DriverProfileDashboardComponent implements OnInit, OnDestroy {
   private messagesSubscription!: Subscription;
   public userMessage = new Payload();
   protected shouldBeHidden: boolean = true;
+  private driverService!: DriverService;
+  public driverData!: UserDataPayload;
 
-  constructor(webSocketService: WebSocketService) {
+  constructor(webSocketService: WebSocketService, driverData: UserDataPayload) {
     this.webSocketService = webSocketService;
   }
 
@@ -45,24 +49,25 @@ export class DriverProfileDashboardComponent implements OnInit, OnDestroy {
         };
       }
     );
+    this.driverData = this.driverService.getDriverData();
   }
 
   //get the current logged in driver
   driver = {
-    firstname: 'Austin',
-    username: 'odia@example.com',
-    rating: 5.0,
-    totalEarnings: 12000,
-    tips: 1500,
-    totalTrips: 245,
-    middleName: '',
-    lastname: "Good-driver",
-    carModel: 'Audi Rs7',
-    vehiclePlateNumber: "XCC9-0",
-    carColor: "Blue",
+    firstname: this.driverData.firstName ?? 'Austin',
+    username: this.driverData.email ?? 'odia@example.com',
+    rating: this.driverData ? 0.0 : 5.0,
+    totalEarnings: this.driverData ? 0.0 : 12000,
+    tips: this.driverData ? 0 : 1500,
+    totalTrips: this.driverData ? 0 : 245,
+    middleName: this.driverData.middleName ?? 'Odia',
+    lastname: this.driverData.lastName ?? "Good-driver",
+    carModel: this.driverData.carBrand ?? 'Audi Rs7',
+    vehiclePlateNumber: this.driverData.carPlateNumber ?? "XCC9-0",
+    carColor: this.driverData.carColor ?? "Blue",
     vehicleRegistrationStatus: "Registered",
     registrationStatus: "Complete",
-    taxID: "NMI555789",
+    taxID: this.driverData.taxID ?? "NMI555789",
   };
 
   //A new trip request from City Center to Green Park.
@@ -71,17 +76,20 @@ export class DriverProfileDashboardComponent implements OnInit, OnDestroy {
     message: this.userMessage.message
   };
 
-  recentTrips = [
+  recentTrips = this.driverData ?? [
     {destination: 'City Center to Eko Atlantic', date: '2023-04-01'},
     {destination: 'Maryland Mall to MM2 airport, Ikeja', date: '2023-06-22'},
     {destination: 'Fola Osibo, Lekki Ph1 to Sonibare Estate Ikeja', date: '2023-07-14'}
   ];
 
-  incomingPayments = [
+  incomingPayments = this.driverData ?? [
     {amount: 300, date: '2023-05-01'},
     {amount: 450, date: '2023-05-02'}
   ];
 
+  /**
+   *Trip Acceptance Form.
+   */
   DriverForm: FormGroup = new FormGroup({
     firstName: new FormControl('Austin',),
     sex: new FormControl('male'),
@@ -92,7 +100,7 @@ export class DriverProfileDashboardComponent implements OnInit, OnDestroy {
 
   declineTrip() {
     this.notification.type = "None";
-    this.notification.message="No new message";
+    this.notification.message = "No new message";
     //driverService.Find_Next_Driver
   }
 
@@ -104,13 +112,13 @@ export class DriverProfileDashboardComponent implements OnInit, OnDestroy {
       sex: sex,
       message: `Driver is on ${sex === 'male' ? 'his' : 'her'} way. Call on ${number}`,
       name: name,
-      phoneNumber:number,
+      phoneNumber: number,
       rating: this.DriverForm.get('rating')?.value ?? 0.0,
       photoUrl: this.DriverForm.get('photograph')?.value ?? '',
       type: 'None',
     });
     this.notification.type = "None";
-    this.notification.message ="No Message";
+    this.notification.message = "No Message";
     this.webSocketService.sendDriverAcceptance(driverPayload);
   }
 
@@ -118,9 +126,9 @@ export class DriverProfileDashboardComponent implements OnInit, OnDestroy {
     return Array(Math.round(this.driver.rating)).fill(0).map((x, i) => i);
   }
 
- /**
- * Lifecycle to destroy listeners and free up memory
-  */
+  /**
+   * Lifecycle to destroy listeners and free up memory
+   */
   ngOnDestroy() {
     if (this.messagesSubscription) {
       this.messagesSubscription.unsubscribe();
