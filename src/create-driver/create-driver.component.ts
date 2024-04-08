@@ -67,7 +67,15 @@ export class CreateDriverComponent {
             this.driverForm.reset();
             // this.router.navigate(['/drive/home'], {queryParams: {data: JSON.stringify(response.body)}});
               this._driverService.setDriverData(NewDriver);
-              this.router.navigate(['/drive/home']);
+            this.router.navigate(['/drive/home']).then(success => {
+              if (success) {
+                console.log('Navigation to /drive/home successful');
+              } else {
+                console.log('Navigation to /drive/home failed');
+              }
+            }).catch(error => {
+              console.error('Navigation error:', error);
+            });
           }
         },
         error: (error) => console.error('Error adding driver:', error)
