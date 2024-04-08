@@ -61,7 +61,7 @@ export class CreateDriverComponent {
     const baseUrl = environment.baseUri;
     const addPersonUrl = `${baseUrl}/signup`;
     if (this.driverForm.valid) {
-      this.http.post<Payload>(addPersonUrl, this.driverForm.value, {observe: 'response'}).subscribe({
+      this.http.post<UserDataPayload>(addPersonUrl, this.driverForm.value, {observe: 'response'}).subscribe({
         next: (response) => {
           if (response.status === 200) {
             console.log('Driver added successfully', response.body);

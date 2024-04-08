@@ -6,7 +6,7 @@ import {CommonModule, CurrencyPipe} from "@angular/common";
 import {MatButton} from "@angular/material/button";
 import {MatTab, MatTabGroup, MatTabsModule} from "@angular/material/tabs";
 import {Subscription} from "rxjs";
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {DriverService} from "../services/DriverService";
 import {UserDataPayload} from "../payload/UserDataPayload";
 
@@ -33,7 +33,7 @@ export class DriverProfileDashboardComponent implements OnInit, OnDestroy {
   private driverService!: DriverService;
   public driverData!: UserDataPayload;
 
-  constructor(webSocketService: WebSocketService, driverData: UserDataPayload) {
+  constructor(webSocketService: WebSocketService) {
     this.webSocketService = webSocketService;
   }
 
@@ -123,7 +123,7 @@ export class DriverProfileDashboardComponent implements OnInit, OnDestroy {
   }
 
   getRatingArray() {
-    return Array(Math.round(this.driver.rating)).fill(0).map((x, i) => i);
+    return Array(Math.round(this.driver.rating)).fill(0).map((_x, i) => i);
   }
 
   /**
