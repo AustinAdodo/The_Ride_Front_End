@@ -5,7 +5,6 @@ import {environment} from '../environments/environment';
 import {NgIf} from "@angular/common";
 import {FormExtension} from "../Extensions/FormExtension";
 import {Router} from "@angular/router";
-import {Payload} from "../payload/Payload";
 import {DriverService} from "../services/DriverService";
 import {UserDataPayload} from "../payload/UserDataPayload";
 
@@ -64,13 +63,11 @@ export class CreateDriverComponent {
       this.http.post<UserDataPayload>(addPersonUrl, this.driverForm.value, {observe: 'response'}).subscribe({
         next: (response) => {
           if (response.status === 200) {
-            console.log('Driver added successfully', response.body);
+            console.log(`Driver added successfully status : ${response.status}`, NewDriver);
             this.driverForm.reset();
             // this.router.navigate(['/drive/home'], {queryParams: {data: JSON.stringify(response.body)}});
-            if (response.status === 200) {
               this._driverService.setDriverData(NewDriver);
               this.router.navigate(['/drive/home']);
-            }
           }
         },
         error: (error) => console.error('Error adding driver:', error)
