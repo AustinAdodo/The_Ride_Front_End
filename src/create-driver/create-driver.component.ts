@@ -22,15 +22,15 @@ export class CreateDriverComponent {
 
   driverForm = new FormGroup({
     firstName: new FormControl('', Validators.required),
-    middleName: new FormControl('', Validators.required),
+    middleName: new FormControl('',),
     sex: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
-    phoneNumber: new FormControl('', Validators.required),
-    address: new FormControl('', Validators.required),
-    photograph: new FormControl('', Validators.required),
-    carColor: new FormControl('', Validators.required),
-    carBrand: new FormControl('', Validators.required),
+    phoneNumber: new FormControl('',),
+    address: new FormControl('', ),
+    photograph: new FormControl('',),
+    carColor: new FormControl('',),
+    carBrand: new FormControl('',),
     Usertype: new FormControl('Driver'),
     password: new FormControl('', Validators.required),
     confirmPassword: new FormControl('', Validators.required)

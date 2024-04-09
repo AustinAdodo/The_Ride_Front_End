@@ -13,6 +13,9 @@
   <div class="form-field">
     <input type="text" formControlName="lastName" placeholder="Last Name">
   </div>
+  <div class="form-field">
+    <input type="text" formControlName="email" placeholder="Your Email">
+  </div>
   <div class="form-field password-container">
     <input [type]="hidePassword ? 'password' : 'text'" formControlName="password" class="form-control" placeholder="Password">
     <i (click)="togglePasswordVisibility()" [class]="hidePassword ? 'fas fa-eye password-icon' : 'fas fa-eye-slash password-icon'"></i>

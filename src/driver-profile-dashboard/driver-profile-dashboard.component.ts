@@ -76,13 +76,13 @@ export class DriverProfileDashboardComponent implements OnInit, OnDestroy {
     message: this.userMessage.message
   };
 
-  recentTrips = this.driverData ?? [
+  recentTrips = this.driverData != null ? [] : [
     {destination: 'City Center to Eko Atlantic', date: '2023-04-01'},
     {destination: 'Maryland Mall to MM2 airport, Ikeja', date: '2023-06-22'},
     {destination: 'Fola Osibo, Lekki Ph1 to Sonibare Estate Ikeja', date: '2023-07-14'}
   ];
 
-  incomingPayments = this.driverData ?? [
+  incomingPayments = this.driverData != null ? [] : [
     {amount: 300, date: '2023-05-01'},
     {amount: 450, date: '2023-05-02'}
   ];
