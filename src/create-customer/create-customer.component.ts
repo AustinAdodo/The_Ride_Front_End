@@ -28,6 +28,7 @@ export class CreateCustomerComponent implements OnInit{
     address: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
     Usertype: new FormControl('Customer'),
+    detectedUsertype: new FormControl('Customer',),
     password: new FormControl('', Validators.required),
     isOnlyMySexAllowed: new FormControl(''),
     confirmPassword: new FormControl('', Validators.required)
