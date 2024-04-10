@@ -32,19 +32,19 @@ export class CreateDriverComponent {
       carColor: new FormControl('',),
       VehiclePlateNumber: new FormControl('xx-yll3',),
       carModel: new FormControl('',),
-      Usertype: new FormControl('Driver'),
+      Usertype: new FormControl('Driver',),
+      detectedUsertype: new FormControl('Driver',),
       password: new FormControl('', Validators.required),
       confirmPassword: new FormControl('', Validators.required),
       TotalTrips: new FormControl(0,),
       Username: new FormControl('odia@example.com',),
       DateOfBirth: new FormControl(new Date('2024-06-01')),
       Category: new FormControl('Registered'),
-      status: new FormControl('Registered'),
-      currentLongitude: new FormControl(3.1110111111),
+      status: new FormControl('Active'),
+      currentLongitude: new FormControl(3.111011111109),
       currentLatitude: new FormControl(6.001111223344),
     },
     {validators: FormExtension.confirmPasswordValidator('password', 'confirmPassword')});
-
 
   constructor(private http: HttpClient, private router: Router, driverService: DriverService) {
     this._driverService = driverService;

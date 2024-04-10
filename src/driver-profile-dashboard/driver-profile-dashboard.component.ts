@@ -54,35 +54,34 @@ export class DriverProfileDashboardComponent implements OnInit, OnDestroy {
 
   //get the current logged in driver
   driver = {
-    firstname: this.driverData.firstName ?? 'Austin',
-    username: this.driverData.email ?? 'odia@example.com',
+    firstname: this.driverData?.firstName ?? 'Austin',
+    username: this.driverData?.email ?? 'odia@example.com',
     rating: this.driverData ? 0.0 : 5.0,
     totalEarnings: this.driverData ? 0.0 : 12000,
     tips: this.driverData ? 0 : 1500,
     totalTrips: this.driverData ? 0 : 245,
-    middleName: this.driverData.middleName ?? 'Odia',
-    lastname: this.driverData.lastName ?? "Good-driver",
-    carModel: this.driverData.carBrand ?? 'Audi Rs7',
-    vehiclePlateNumber: this.driverData.carPlateNumber ?? "XCC9-0",
-    carColor: this.driverData.carColor ?? "Blue",
+    middleName: this.driverData?.middleName ?? 'Odia',
+    lastname: this.driverData?.lastName ?? "Good-driver",
+    carModel: this.driverData?.carModel ?? 'Audi Rs7',
+    vehiclePlateNumber: this.driverData?.carPlateNumber ?? "XCC9-0",
+    carColor: this.driverData?.carColor ?? "Blue",
     vehicleRegistrationStatus: "Registered",
     registrationStatus: "Complete",
-    taxID: this.driverData.taxID ?? "NMI555789",
+    taxID: this.driverData?.taxID ?? "NMI555789",
   };
 
-  //A new trip request from City Center to Green Park.
   notification = {
     type: this.userMessage.type,
     message: this.userMessage.message
   };
 
-  recentTrips = this.driverData != null ? [] : [
+  recentTrips = this.driverData != null || undefined ? [] : [
     {destination: 'City Center to Eko Atlantic', date: '2023-04-01'},
     {destination: 'Maryland Mall to MM2 airport, Ikeja', date: '2023-06-22'},
     {destination: 'Fola Osibo, Lekki Ph1 to Sonibare Estate Ikeja', date: '2023-07-14'}
   ];
 
-  incomingPayments = this.driverData != null ? [] : [
+  incomingPayments = this.driverData != null || undefined ? [] : [
     {amount: 300, date: '2023-05-01'},
     {amount: 450, date: '2023-05-02'}
   ];
