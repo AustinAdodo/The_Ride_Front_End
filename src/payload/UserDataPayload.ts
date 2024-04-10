@@ -7,9 +7,10 @@ export class UserDataPayload extends Payload {
   email: string = "";
   carColor: string = "";
   carPlateNumber: string = "";
-  carBrand: string = "No Message";
+  carModel: string = "No Message";
   address: string = "address";
   taxID: string = "";
+  Usertype: string = "";
 
   constructor(init?: Partial<UserDataPayload>) {
     super();

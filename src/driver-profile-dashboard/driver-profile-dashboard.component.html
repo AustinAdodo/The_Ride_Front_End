@@ -5,7 +5,7 @@
     <div class="dashboard">
       <div class="message-bar" *ngIf="notification?.type === 'New trip' || 'General Message'">
         <p style="color: #4CAF50; text-align: center">{{ notification.message }} </p>
-        <form [formGroup]="DriverForm" (ngSubmit)="acceptTrip()" class="user-dashboard-form">
+        <form [formGroup]="DriverAcceptanceForm" (ngSubmit)="acceptTrip()" class="user-dashboard-form">
           <div class="form-submit">
             <button type="submit" *ngIf="notification?.type === 'New trip'">Accept</button>
             <button type="button" (click)="declineTrip()" *ngIf="notification?.type === 'New trip'">Decline</button>

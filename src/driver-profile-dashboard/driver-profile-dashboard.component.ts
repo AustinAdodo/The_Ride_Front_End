@@ -90,7 +90,7 @@ export class DriverProfileDashboardComponent implements OnInit, OnDestroy {
   /**
    *Trip Acceptance Form.
    */
-  DriverForm: FormGroup = new FormGroup({
+  DriverAcceptanceForm: FormGroup = new FormGroup({
     firstName: new FormControl('Austin',),
     sex: new FormControl('male'),
     lastName: new FormControl('Good-Driver'),
@@ -105,16 +105,16 @@ export class DriverProfileDashboardComponent implements OnInit, OnDestroy {
   }
 
   acceptTrip() {
-    const name = `${this.DriverForm.get('firstName')?.value} ${this.DriverForm.get('lastName')?.value}`;
-    const sex = this.DriverForm.get('sex')?.value ?? "";
+    const name = `${this.DriverAcceptanceForm.get('firstName')?.value} ${this.DriverAcceptanceForm.get('lastName')?.value}`;
+    const sex = this.DriverAcceptanceForm.get('sex')?.value ?? "";
     const number = '09384721';
     const driverPayload: Payload = new Payload({
       sex: sex,
       message: `Driver is on ${sex === 'male' ? 'his' : 'her'} way. Call on ${number}`,
       name: name,
       phoneNumber: number,
-      rating: this.DriverForm.get('rating')?.value ?? 0.0,
-      photoUrl: this.DriverForm.get('photograph')?.value ?? '',
+      rating: this.DriverAcceptanceForm.get('rating')?.value ?? 0.0,
+      photoUrl: this.DriverAcceptanceForm.get('photograph')?.value ?? '',
       type: 'None',
     });
     this.notification.type = "None";
