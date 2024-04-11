@@ -80,10 +80,11 @@
         <p><strong>Vehicle Registration Status:</strong> {{ driver.vehicleRegistrationStatus }}</p>
         <p><strong>Registration Status:</strong> {{ driver.registrationStatus }}</p>
         <p>
-          <strong>Ratings:</strong>
-          <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
-            <mat-icon>{{ star <= driver.rating ? 'star' : 'star_border' }}</mat-icon>
-          </ng-container>
+          <strong style="padding-right: 5px">Ratings:</strong>
+          <span class="rating"> <i class="fas fa-star" *ngFor="let star of getRatingArray()"></i></span>
+<!--          <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">-->
+<!--            <mat-icon>{{ star <= driver.rating ? 'star' : 'star_border' }}</mat-icon>-->
+<!--          </ng-container>-->
         </p>
         <p><strong>Total Earnings:</strong> {{ driver.totalEarnings | currency }}</p>
         <p><strong>Tips:</strong> {{ driver.tips | currency }}</p>
