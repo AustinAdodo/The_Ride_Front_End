@@ -38,12 +38,12 @@ export class DriverProfileDashboardComponent implements OnInit, OnDestroy {
     rating: number,
     totalEarnings: number,
     tips: number,
-    totalTrips:number,
+    totalTrips: number,
     middleName: string,
     lastname: string,
     carModel: string,
     vehiclePlateNumber: string,
-    carColor:string,
+    carColor: string,
     vehicleRegistrationStatus: string,
     registrationStatus: string,
     taxID: string,
@@ -70,6 +70,8 @@ export class DriverProfileDashboardComponent implements OnInit, OnDestroy {
       this.updateDriver(data);
       console.log("Driver data has been successfully updated here in the Driver dashboard component:",
         JSON.stringify(this.driverData, null, 2));
+      this.incomingPayments = data?.incomingPayments ?? this.incomingPayments;
+      this.recentTrips = data?.recentTrips ?? this.recentTrips;
     });
   }
 
@@ -78,7 +80,7 @@ export class DriverProfileDashboardComponent implements OnInit, OnDestroy {
     this.driver = {
       firstname: data?.firstName ?? 'Austin',
       username: data?.email ?? 'odia@example.com',
-      rating: data ? data.rating ?? 0.0 : 5.0,
+      rating: data?.rating ? 0.0 : 5.0,
       totalEarnings: data ? 0.0 : 12000,
       tips: data ? 0 : 1500,
       totalTrips: data ? 0 : 245,
@@ -98,13 +100,13 @@ export class DriverProfileDashboardComponent implements OnInit, OnDestroy {
     message: this.userMessage.message
   };
 
-  recentTrips = this.driverData != null || undefined ? [] : [
+  recentTrips = [
     {destination: 'City Center to Eko Atlantic', date: '2023-04-01'},
     {destination: 'Maryland Mall to MM2 airport, Ikeja', date: '2023-06-22'},
     {destination: 'Fola Osibo, Lekki Ph1 to Sonibare Estate Ikeja', date: '2023-07-14'}
   ];
 
-  incomingPayments = this.driverData != null || undefined ? [] : [
+  incomingPayments = [
     {amount: 300, date: '2023-05-01'},
     {amount: 450, date: '2023-05-02'}
   ];
