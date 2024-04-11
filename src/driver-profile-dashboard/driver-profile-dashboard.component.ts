@@ -30,10 +30,9 @@ export class DriverProfileDashboardComponent implements OnInit, OnDestroy {
   private messagesSubscription!: Subscription;
   public userMessage = new Payload();
   protected shouldBeHidden: boolean = true;
-  private driverService!: DriverService;
-  public driverData!: UserDataPayload;
+  public driverData!: UserDataPayload | null;
 
-  constructor(webSocketService: WebSocketService) {
+  constructor(webSocketService: WebSocketService, private driverService: DriverService,) {
     this.webSocketService = webSocketService;
   }
 
@@ -49,7 +48,10 @@ export class DriverProfileDashboardComponent implements OnInit, OnDestroy {
         };
       }
     );
-    this.driverData = this.driverService.getDriverData();
+    this.driverService.getDriverData().subscribe(data => {
+      this.driverData = data;
+      // this.updateDriverInfo();
+    });
   }
 
   //get the current logged in driver

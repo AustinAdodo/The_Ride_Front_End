@@ -1,21 +1,22 @@
 import { Injectable } from '@angular/core';
 import {environment} from '../environments/environment';
-import {Payload} from "../payload/Payload";
+import {BehaviorSubject, Observable} from "rxjs";
+import {UserDataPayload} from "../payload/UserDataPayload";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DriverService {
   baseUrl=  environment.baseUri;
-  private driverData!:Payload;
+  private driverDataSubject = new BehaviorSubject<UserDataPayload | null>(null);
   constructor() { }
 
-  setDriverData(data: Payload): void {
-    this.driverData = data;
+  setDriverData(data: UserDataPayload): void {
+    this.driverDataSubject.next(data);
   }
 
-  getDriverData(): any {
-    return this.driverData;
+  getDriverData(): Observable<UserDataPayload | null> {
+    return this.driverDataSubject.asObservable();
   }
 
   async getDriversWithinBoundingBoxCoordinates(minLat: number, maxLat: number, minLon: number, maxLon: number): Promise<any> {
