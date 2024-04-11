@@ -31,6 +31,23 @@ export class DriverProfileDashboardComponent implements OnInit, OnDestroy {
   public userMessage = new Payload();
   protected shouldBeHidden: boolean = true;
   public driverData!: UserDataPayload | null;
+  private subscription!: Subscription;
+  public driver!: {
+    firstname: string,
+    username: string,
+    rating: number,
+    totalEarnings: number,
+    tips: number,
+    totalTrips:number,
+    middleName: string,
+    lastname: string,
+    carModel: string,
+    vehiclePlateNumber: string,
+    carColor:string,
+    vehicleRegistrationStatus: string,
+    registrationStatus: string,
+    taxID: string,
+  };
 
   constructor(webSocketService: WebSocketService, private driverService: DriverService,) {
     this.webSocketService = webSocketService;
@@ -40,7 +57,7 @@ export class DriverProfileDashboardComponent implements OnInit, OnDestroy {
     this.messagesSubscription = this.webSocketService.userUpdateMessages.subscribe(
       (message: Payload) => {
         this.userMessage = message;
-        console.log("Subscribed successfully via OnInit in DriverDashboardComponent")
+        console.log("Subscribed successfully via OnInit in DriverDashboardComponent");
         console.log(message);
         this.notification = {
           type: message.type,
@@ -48,29 +65,33 @@ export class DriverProfileDashboardComponent implements OnInit, OnDestroy {
         };
       }
     );
-    this.driverService.getDriverData().subscribe(data => {
+    this.subscription = this.driverService.getDriverData().subscribe(data => {
       this.driverData = data;
-      // this.updateDriverInfo();
+      this.updateDriver(data);
+      console.log("Driver data has been successfully updated here in the Driver dashboard component:",
+        JSON.stringify(this.driverData, null, 2));
     });
   }
 
   //get the current logged in driver
-  driver = {
-    firstname: this.driverData?.firstName ?? 'Austin',
-    username: this.driverData?.email ?? 'odia@example.com',
-    rating: this.driverData ? 0.0 : 5.0,
-    totalEarnings: this.driverData ? 0.0 : 12000,
-    tips: this.driverData ? 0 : 1500,
-    totalTrips: this.driverData ? 0 : 245,
-    middleName: this.driverData?.middleName ?? 'Odia',
-    lastname: this.driverData?.lastName ?? "Good-driver",
-    carModel: this.driverData?.carModel ?? 'Audi Rs7',
-    vehiclePlateNumber: this.driverData?.carPlateNumber ?? "XCC9-0",
-    carColor: this.driverData?.carColor ?? "Blue",
-    vehicleRegistrationStatus: "Registered",
-    registrationStatus: "Complete",
-    taxID: this.driverData?.taxID ?? "NMI555789",
-  };
+  private updateDriver(data: UserDataPayload | null): void {
+    this.driver = {
+      firstname: data?.firstName ?? 'Austin',
+      username: data?.email ?? 'odia@example.com',
+      rating: data ? data.rating ?? 0.0 : 5.0,
+      totalEarnings: data ? 0.0 : 12000,
+      tips: data ? 0 : 1500,
+      totalTrips: data ? 0 : 245,
+      middleName: data?.middleName ?? 'Odia',
+      lastname: data?.lastName ?? "Good-driver",
+      carModel: data?.carModel ?? 'Audi Rs7',
+      vehiclePlateNumber: data?.carPlateNumber ?? "XCC9-0",
+      carColor: data?.carColor ?? "Blue",
+      vehicleRegistrationStatus: data ? 'Newly Registered' : "Registered",
+      registrationStatus: data ? 'Complete' : "Complete",
+      taxID: data?.taxID ?? "NMI555789",
+    };
+  }
 
   notification = {
     type: this.userMessage.type,
@@ -133,6 +154,9 @@ export class DriverProfileDashboardComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     if (this.messagesSubscription) {
       this.messagesSubscription.unsubscribe();
+    }
+    if (this.subscription) {
+      this.subscription.unsubscribe();
     }
   }
 }
