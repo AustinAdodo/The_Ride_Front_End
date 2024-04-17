@@ -2,9 +2,9 @@ name: NodeJS with Webpack
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [main]  # Simplified syntax for single-item arrays
   pull_request:
-    branches: [ "main" ]
+    branches: [main]
 
 jobs:
   build:
@@ -12,17 +12,22 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x]
+        node-version: [18.x]
 
     steps:
-    - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3  # Check out the latest code from the repository
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'  # This option automatically caches npm dependencies and replaces the separate cache step
 
-    - name: Build
-      run: |
-        npm install
-        npx webpack
+      - name: Install dependencies
+        run: npm install  # Install all project dependencies
+
+      - name: Build the project with Webpack
+        run: npx webpack  # Run webpack using npx to bundle the application
+
+    # Moving Forward: Add steps for additional commands, such as testing or deployment
