@@ -2,9 +2,9 @@ name: NodeJS with Webpack
 
 on:
   push:
-    branches: [main]  # Simplified syntax for single-item arrays
+    branches: [ main ]  # Simplified syntax for single-item arrays
   pull_request:
-    branches: [main]
+    branches: [ main ]
 
 jobs:
   build:
@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [ 18.x ]
 
     steps:
       - name: Checkout code
@@ -27,8 +27,11 @@ jobs:
       - name: Install dependencies
         run: npm install  # Install all project dependencies
 
-      - name: Build the project with Webpack
-        run: npx webpack --mode development  # Run webpack using npx to bundle the application
+      - name: Build the project with Angular CLI
+        run: ng build --configuration development
+
+    #      - name: Build the project with Webpack
+    #        run: npx webpack --mode development  # Run webpack using npx to bundle the application
 
     # Moving Forward: Add steps for additional commands, such as testing or deployment
     # Angular projects (versions >= 9), you don't need to create a manual webpack.config.js
