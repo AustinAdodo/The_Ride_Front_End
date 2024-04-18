@@ -31,3 +31,4 @@ jobs:
         run: npx webpack --mode development  # Run webpack using npx to bundle the application
 
     # Moving Forward: Add steps for additional commands, such as testing or deployment
+    # Angular projects (versions >= 9), you don't need to create a manual webpack.config.js
