@@ -27,6 +27,9 @@ jobs:
       - name: Install dependencies
         run: npm install  # Install all project dependencies
 
+      - name: Install Angular CLI globally
+        run: npm install -g @angular/cli
+
       - name: Build the project with Angular CLI
         run: ng build --configuration development
 
