@@ -28,6 +28,6 @@ jobs:
         run: npm install  # Install all project dependencies
 
       - name: Build the project with Webpack
-        run: npx webpack  # Run webpack using npx to bundle the application
+        run: npx webpack --mode development  # Run webpack using npx to bundle the application
 
     # Moving Forward: Add steps for additional commands, such as testing or deployment
