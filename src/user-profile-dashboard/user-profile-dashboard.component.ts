@@ -98,7 +98,12 @@ export class UserProfileDashboardComponent implements OnInit, OnDestroy {
     });
   }
 
-  sendCustomerTripRequest() {
+  /**
+   * This method basically send the booking customers information.
+   * @return {void}
+   */
+
+  sendCustomerTripRequest(): void {
     const name = `${this.UserForm.get('firstName')?.value} ${this.UserForm.get('lastName')?.value}`;
     const address = this.UserForm.get('Location')?.value ?? ''
     const currentUserPayload: Payload = new Payload({

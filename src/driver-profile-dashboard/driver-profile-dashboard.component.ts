@@ -85,7 +85,7 @@ export class DriverProfileDashboardComponent implements OnInit, OnDestroy {
       tips: data ? 0 : 1500,
       totalTrips: data ? 0 : 245,
       middleName: data?.middleName ?? 'Odia',
-      lastname: data?.lastName ?? "Good-driver",
+      lastname: data?.lastName ?? "Good-Driver",
       carModel: data?.carModel ?? 'Audi Rs7',
       vehiclePlateNumber: data?.carPlateNumber ?? "XCC9-0",
       carColor: data?.carColor ?? "Blue",
