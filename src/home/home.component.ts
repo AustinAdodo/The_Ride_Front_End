@@ -12,6 +12,4 @@ import {UserProfileDashboardComponent} from "../user-profile-dashboard/user-prof
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent {
-
-}
+export class HomeComponent {}
