@@ -5,6 +5,7 @@ import {Client} from "stompjs";
 import {Subject} from 'rxjs';
 import {Payload} from "../payload/Payload";
 import {environment} from "../environments/environment";
+import { AuthService } from './AuthService';
 
 @Injectable({
   providedIn: 'root',
@@ -21,12 +22,13 @@ export class WebSocketService {
   public userUpdateMessages = this.userMessageSubject.asObservable();
   public driverUpdateMessages = this.driverMessageSubject.asObservable();
 
-  constructor() {
+  constructor(private authService: AuthService) {
     this.initializeWebSocketConnection();
   }
 
   initializeWebSocketConnection() {
-    const serverUrl = environment.webSocketUrl;
+    const token = this.authService.getToken();
+    const serverUrl = `${environment.webSocketUrl}?token=${token}`;
     const ws = new SockJS(serverUrl);
     this._stompClient = Stomp.over(ws);
     this._stompClient.connect({}, () => {
