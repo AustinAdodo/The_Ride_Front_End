@@ -24,30 +24,23 @@ export class DriverLoginComponent {
   constructor(private http: HttpClient, private router: Router, private authService: AuthService) {
   }
 
-  login() {
-    const credentials = {
-      username: this.username,
-      password: this.password
-    };
-    this.http.post<any>(`${baseUri}/login`, credentials)
-      .subscribe(
-        () => {
-          this.authService.login();
-          console.log('Attempting to navigate to /drive/home');
-          this.router.navigate(['/drive/home']).then(success => {
-            if (success) {
-              console.log('Navigation to /drive/home successful');
-            } else {
-              console.log('Navigation to /drive/home failed');
-            }
-          }).catch(error => {
-            console.error('Navigation error:', error);
-          });
+  login(): void {
+    const headers = {'content-type': 'application/x-www-form-urlencoded'};
+    const body = `username=${encodeURIComponent(this.username)}&password=${encodeURIComponent(this.password)}`;
+    this.http.post<any>(`${baseUri}/login`, body, {headers: headers})
+      .subscribe({
+        next: (response) => {
+          if (response.token) {
+            this.authService.login(response.token);
+          }
+          this.router.navigate(['/drive/home']).then(r => console.log("Navigation to /drive/home successful."))
+            .catch(e => console.log("Navigation to /drive/home failed"));
         },
-        (error) => {
-          this.errorMessage = error.error.message || 'An error occurred during login.';
+        error: (error) => {
+          console.error('Driver Login failed', error);
+          this.errorMessage = 'Driver Login failed: ' + (error.error.message || 'Unknown error');
         }
-      );
+      });
   }
 
   logout() {
