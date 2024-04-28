@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Injectable, PLATFORM_ID, Inject } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -8,29 +9,38 @@ export class AuthService {
   private loggedIn = new BehaviorSubject<boolean>(false);
   private tokenKey = 'auth_token';
 
+  constructor(@Inject(PLATFORM_ID) private platformId: any) { }
+
   setToken(token: string): void {
-    localStorage.setItem(this.tokenKey, token);
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem(this.tokenKey, token);
+      this.loggedIn.next(true);
+    }
   }
 
   getToken(): string | null {
-    return localStorage.getItem(this.tokenKey);
+    if (isPlatformBrowser(this.platformId)) {
+      return localStorage.getItem(this.tokenKey);
+    }
+    return null;
   }
 
-  get isLoggedIn() {
-    // const token = this.getToken();
-    // // Implement logic to check if token is not expired based on its expiry time
-    // return !!token; // For simplicity, just checking if token exists
-    return this.loggedIn.asObservable(); //allow components to subscribe to the login state
+  get isLoggedIn(): Observable<boolean> {
+    if (isPlatformBrowser(this.platformId)) {
+      const token = this.getToken();
+      this.loggedIn.next(!!token);
+    }
+    return this.loggedIn.asObservable();
   }
 
-  constructor() { }
-
-  login() {
-    this.loggedIn.next(true);
+  login(token: string): void {
+    this.setToken(token);
   }
 
-  logout() {
-    localStorage.removeItem(this.tokenKey);
-    this.loggedIn.next(false);
+  logout(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.removeItem(this.tokenKey);
+      this.loggedIn.next(false);
+    }
   }
 }
