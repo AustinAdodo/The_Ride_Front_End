@@ -1,12 +1,10 @@
 // second terminal window ng serve --port 4201
-import {Component, OnInit} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {NavigationEnd, RouterLink, RouterModule, RouterOutlet} from '@angular/router';
-import {Router} from '@angular/router';
-import {AuthService} from '../services/AuthService';
-import {filter} from "rxjs";
-import {HttpClient, HttpClientModule} from "@angular/common/http";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { NavigationEnd, RouterLink, RouterOutlet, Router } from '@angular/router';
+import { AuthService } from '../services/AuthService';
+import { filter } from "rxjs/operators";
+import { HttpClient, HttpClientModule } from "@angular/common/http";
 
 @Component({
   selector: 'app-root',
@@ -23,18 +21,12 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 export class AppComponent implements OnInit {
   title = 'The Ride';
   showMainContent: boolean = false;
-  isLoggedIn: boolean = false;
-  errorMessage: string = "";
 
-  constructor(private router: Router, private authService: AuthService, private http: HttpClient) {
+  constructor(private router: Router, public authService: AuthService, private http: HttpClient) {
     this.router.events.pipe(
       filter((event): event is NavigationEnd => event instanceof NavigationEnd)
     ).subscribe((event: NavigationEnd) => {
       this.showMainContent = event.url === '/' || event.url === '/index';
-    });
-
-    this.authService.isLoggedIn.subscribe((loggedIn) => {
-      this.isLoggedIn = loggedIn;
     });
   }
 
@@ -45,12 +37,10 @@ export class AppComponent implements OnInit {
     this.http.post('/logout', {}).subscribe(
       () => {
         this.authService.logout();
-        this.router.navigate(['/login']).then(r => this.isLoggedIn = false);
+        this.router.navigate(['/login']).then(_ => {});
       },
       (error: any) => {
-        // Handle error
         console.error('Logout failed:', error);
-        this.errorMessage = 'Logout failed';
       }
     );
   }
