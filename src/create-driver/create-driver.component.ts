@@ -37,7 +37,7 @@ export class CreateDriverComponent {
       password: new FormControl('', Validators.required),
       confirmPassword: new FormControl('', Validators.required),
       TotalTrips: new FormControl(0,),
-      Username: new FormControl('odia@example.com',),
+      username: new FormControl('odia@example.com',),
       DateOfBirth: new FormControl(new Date('2024-06-01')),
       Category: new FormControl('Registered'),
       status: new FormControl('Active'),
@@ -65,6 +65,7 @@ export class CreateDriverComponent {
       photoUrl: formValues.photograph || "",
       address: formValues.address || "",
       Usertype: formValues.Usertype || "",
+      username: formValues.username || "",
     });
 
     const baseUrl = environment.baseUri;

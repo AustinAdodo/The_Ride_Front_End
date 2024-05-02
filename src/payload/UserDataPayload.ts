@@ -16,6 +16,7 @@ export class UserDataPayload extends Payload {
   address: string = "address";
   taxID: string = "";
   Usertype: string = "";
+  username: string = "";
 
   constructor(init?: Partial<UserDataPayload>) {
     super();

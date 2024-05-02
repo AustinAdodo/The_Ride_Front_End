@@ -8,7 +8,7 @@ export class FormExtension {
       const matchingControl = formGroup.controls[matchingControlName];
 
       if (!controlToCompare || !matchingControl) {
-        // Optionally, you could handle the error of controls not being found
+        // Optionally, handle the error of controls not being found
         return null; // or return an error object if necessary
       }
 
@@ -17,7 +17,7 @@ export class FormExtension {
         return { notMatched: true }; // Return an error object
       } else {
         matchingControl.setErrors(null);
-        return null; // Indicate that there is no error
+        return null; // Indication that there is no error
       }
     };
   }
