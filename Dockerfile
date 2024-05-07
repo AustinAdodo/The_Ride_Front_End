@@ -18,9 +18,15 @@ RUN npm install
 # Bundle app source
 COPY . .
 
-# Build the application for production
-RUN npm run build -- --configuration=production
+# Set the NODE_ENV environment variable to 'production'
+ARG ANGULAR_ENV
+ENV NODE_ENV=$ANGULAR_ENV
 
+# Build the application for production
+RUN if [ "$ANGULAR_ENV" = "production" ]; then npm run build -- --configuration=production; else npm run build; fi
+
+# Add a global variable to mock the 'net' package
+RUN echo "global.net = require('net');" > src/window-global-fix.ts
 
 # Install serve to serve your app on container start
 RUN npm install -g serve
