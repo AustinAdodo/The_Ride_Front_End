@@ -13,8 +13,8 @@ export class FormExtension {
       }
 
       if (controlToCompare.value !== matchingControl.value) {
-        matchingControl.setErrors({ notMatched: true });
-        return { notMatched: true }; // Return an error object
+        matchingControl.setErrors({notMatched: true});
+        return {notMatched: true}; // Return an error object
       } else {
         matchingControl.setErrors(null);
         return null; // Indication that there is no error
