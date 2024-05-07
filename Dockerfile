@@ -3,6 +3,7 @@
 #
 #ENTRYPOINT ["top", "-b"]
 # Node runtime as a parent image
+# Node runtime as a parent image
 FROM node:14-alpine
 
 # Set the working directory in the container
@@ -17,8 +18,8 @@ RUN npm install
 # Bundle app source
 COPY . .
 
-# Build the application (if this step is needed)
-RUN npm run build
+# Build the application for production
+RUN npm run build -- --configuration=production
 
 # Install serve to serve your app on container start
 RUN npm install -g serve
