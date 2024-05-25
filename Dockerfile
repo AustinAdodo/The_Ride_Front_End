@@ -1,8 +1,3 @@
-#FROM ubuntu:latest
-#LABEL authors="mudia"
-#
-#ENTRYPOINT ["top", "-b"]
-
 # Use a Node.js base image with a newer version
 FROM node:18-alpine
 
@@ -25,9 +20,6 @@ ENV NODE_ENV=$ANGULAR_ENV
 # Build the application for production
 RUN if [ "$ANGULAR_ENV" = "production" ]; then npm run build -- --configuration=production; else npm run build; fi
 
-# Add a global variable to mock the 'net' package
-RUN echo "global.net = require('net');" > src/window-global-fix.ts
-
 # Install serve to serve your app on container start
 RUN npm install -g serve
 
@@ -35,4 +27,4 @@ RUN npm install -g serve
 EXPOSE 4200
 
 # Command to run on container start
-CMD ["serve", "-s", "build", "-l", "4200"]
+CMD ["serve", "-s", "dist/the-ride-front-end", "-l", "4200"]
