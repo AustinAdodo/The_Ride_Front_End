@@ -18,7 +18,12 @@ ARG ANGULAR_ENV
 ENV NODE_ENV=$ANGULAR_ENV
 
 # Build the application for production
-RUN if [ "$ANGULAR_ENV" = "production" ]; then npm run build -- --configuration=production; else npm run build; fi
+RUN if [ "$ANGULAR_ENV" = "production" ]; then \
+  npm run build -- --configuration=production --platform=browser; \
+else \
+  npm run build --platform=browser; \
+fi
+
 
 # Install serve to serve your app on container start
 RUN npm install -g serve
