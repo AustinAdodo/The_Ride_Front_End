@@ -7,6 +7,13 @@ import {Payload} from "../payload/Payload";
 import {environment} from "../environments/environment";
 import { AuthService } from './AuthService';
 
+
+// Conditional import for net module
+let net;
+if (typeof window === 'undefined') {
+  net = require('net');
+}
+
 @Injectable({
   providedIn: 'root',
 })
