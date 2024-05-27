@@ -11,9 +11,10 @@ const config: webpack.Configuration = {
   // Resolve configuration options
   resolve: {
     fallback: {
-      // Specify modules that should not be bundled for the client-side
-      net: false, // 'net' module is a Node.js built-in module
-      // Add other Node.js modules here if needed
+      // Ensure that these Node.js modules are not bundled for the client-side
+      "net": false,
+      "tls": false,
+      "fs": false,
     },
   },
   // Plugins configuration
