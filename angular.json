@@ -11,8 +11,11 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:application",
+          "builder": "@angular-builders/custom-webpack",
           "options": {
+            "customWebpackConfig": {
+              "path": "src/webpack.config.ts"
+            },
             "outputPath": "dist/the-ride-front-end",
             "index": "src/index.html",
             "browser": "src/main.ts",
