@@ -2,7 +2,7 @@ name: NodeJS with Webpack
 
 on:
   push:
-    branches: [ main ]  # Simplified syntax for single-item arrays
+    branches: [ main ]
   pull_request:
     branches: [ main ]
 
@@ -22,21 +22,19 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'  # This option automatically caches npm dependencies and replaces the separate cache step
+          cache: 'npm'  # Automatically caches npm dependencies
 
-      - name: Install dependencies
+      - name: Install project-specific dependencies
         run: |
-            npm install @angular/cli@18.0.0 @angular-devkit/build-angular@18.0.0 --save-dev
-            npm install  # Install all project dependencies
-        
-      - name: Install Angular CLI globally
-        run: npm install -g @angular/cli@^18.0.0  # Install Angular CLI matching project version
+          npm install @angular/cli@^18.0.0 --save-dev  
+          npm install @angular-devkit/build-angular@^18.0.0 --save-dev 
+          npm install  # Install all other project dependencies
 
-      - name: Ensure @angular-devkit/build-angular is installed
-        run: npm install --save-dev @angular-devkit/build-angular@^18.0.0  # Ensure necessary devkit is installed
+      - name: Install Angular CLI globally
+        run: npm install -g @angular/cli@^18.0.0  # Optional: Install Angular CLI globally if needed
 
       - name: Build the project with Angular CLI
-        run: ng build --configuration development --verbose  # Using verbose logging for better debugging info
+        run: npx ng build --configuration development --verbose  # Use npx to run the locally installed Angular CLI
 
     # Uncomment below section if Webpack is used for manual bundling
     # - name: Build the project with Webpack
