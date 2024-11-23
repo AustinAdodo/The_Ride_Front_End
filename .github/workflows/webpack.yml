@@ -25,8 +25,10 @@ jobs:
           cache: 'npm'  # This option automatically caches npm dependencies and replaces the separate cache step
 
       - name: Install dependencies
-        run: npm install  # Install all project dependencies
-
+        run: |
+            npm install @angular/cli@18.0.0 @angular-devkit/build-angular@18.0.0 --save-dev
+            npm install  # Install all project dependencies
+        
       - name: Install Angular CLI globally
         run: npm install -g @angular/cli@^18.0.0  # Install Angular CLI matching project version
 
@@ -34,7 +36,7 @@ jobs:
         run: npm install --save-dev @angular-devkit/build-angular@^18.0.0  # Ensure necessary devkit is installed
 
       - name: Build the project with Angular CLI
-        run: ng build --configuration development --verbose  # Use verbose logging for better debugging info
+        run: ng build --configuration development --verbose  # Using verbose logging for better debugging info
 
     # Uncomment below section if Webpack is used for manual bundling
     # - name: Build the project with Webpack
