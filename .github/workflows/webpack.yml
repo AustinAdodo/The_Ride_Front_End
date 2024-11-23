@@ -28,13 +28,16 @@ jobs:
         run: npm install  # Install all project dependencies
 
       - name: Install Angular CLI globally
-        run: npm install -g @angular/cli
+        run: npm install -g @angular/cli@^18.0.0  # Install Angular CLI matching project version
+
+      - name: Ensure @angular-devkit/build-angular is installed
+        run: npm install --save-dev @angular-devkit/build-angular@^18.0.0  # Ensure necessary devkit is installed
 
       - name: Build the project with Angular CLI
-        run: ng build --configuration development
+        run: ng build --configuration development --verbose  # Use verbose logging for better debugging info
 
-    #      - name: Build the project with Webpack
-    #        run: npx webpack --mode development  # Run webpack using npx to bundle the application
+    # Uncomment below section if Webpack is used for manual bundling
+    # - name: Build the project with Webpack
+    #   run: npx webpack --mode development  # Run webpack using npx to bundle the application
 
     # Moving Forward: Add steps for additional commands, such as testing or deployment
-    # Angular projects (versions >= 9), you don't need to create a manual webpack.config.js
