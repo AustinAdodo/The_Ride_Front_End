@@ -6,12 +6,6 @@ import { Payload } from "../payload/Payload";
 import { environment } from "../environments/environment";
 import { AuthService } from './AuthService';
 
-// Conditional import for net module
-// let net;
-// if (typeof window === 'undefined') {
-//   net = require('net');
-// }
-
 @Injectable({
   providedIn: 'root',
 })
@@ -110,7 +104,7 @@ import { AuthService } from './AuthService';
  * 4. When an action occurs (e.g., a trip request or acceptance), it uses the `publish` method to 
  *    send messages to the server.
  * 
- * CONCLUSION:
+ * @CONCLUSION:
  * 
  * By upgrading to `@stomp/stompjs` and `sockjs-client`, this service provides a modern, robust, 
  * and browser-compatible solution for real-time communication in Angular applications. It eliminates 
@@ -151,6 +145,7 @@ export class WebSocketService {
   /**
    * Driver Actions
    */
+  
   private subscribeToSystemMessages() {
     this._stompClient.subscribe('/topic/SystemMessages', (message: { body: string }) => {
       if (message.body) {
@@ -174,13 +169,14 @@ export class WebSocketService {
     driverPayload.topic = 'driverUpdates';
     this._stompClient.publish({
       destination: '/app/acceptTrip',
-      body: JSON.stringify({...driverPayload}),
-    });    
+      body: JSON.stringify({ ...driverPayload }),
+    });
   }
 
   /**
    * User Actions
    */
+
   private subscribeToDriverUpdates() {
     this._stompClient.subscribe('/topic/driverUpdates', (message: { body: string }) => {
       if (message.body) {
@@ -197,13 +193,14 @@ export class WebSocketService {
     userPayload.topic = 'customer';
     this._stompClient.publish({
       destination: '/app/trip/Request',
-      body: JSON.stringify({...userPayload}),
-    });    
+      body: JSON.stringify({ ...userPayload }),
+    });
   }
 
   /**
    * other Actions
    */
+
   private mapToDriverPayload(data: Payload): Payload {
     const payload = new Payload();
     payload.name = data.name || "Driver";
@@ -216,3 +213,10 @@ export class WebSocketService {
   }
 
 }
+
+
+// Conditional import for net module
+// let net;
+// if (typeof window === 'undefined') {
+//   net = require('net');
+// }
