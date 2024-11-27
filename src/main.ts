@@ -8,7 +8,6 @@ import {environment} from "./environments/environment";
 import {enableProdMode, importProvidersFrom} from "@angular/core";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
-
 if (environment.production) {
   enableProdMode();
 }
