@@ -2,12 +2,12 @@
 //import './global-shim';
 const currentEnvironment = process.env['NODE_ENV'] as string;
 console.info("Current Detected Environment is:", currentEnvironment);
-const mapBoxGlAccessToken = process.env['MAPBOX_GL_ACCESS_TOKEN'] as string;
-if (!mapBoxGlAccessToken) {
-  console.error("MAPBOX_GL_ACCESS_TOKEN is not defined.");
-} else {
-  console.log("MAPBOX_GL_ACCESS_TOKEN loaded:", mapBoxGlAccessToken);
-}
+// const mapBoxGlAccessToken = process.env['MAPBOX_GL_ACCESS_TOKEN'] as string;
+// if (!mapBoxGlAccessToken) {
+//   console.error("MAPBOX_GL_ACCESS_TOKEN is not defined.");
+// } else {
+//   console.log("MAPBOX_GL_ACCESS_TOKEN loaded:", mapBoxGlAccessToken);
+// }
 
 import {bootstrapApplication} from '@angular/platform-browser';
 import {appConfig} from './app/app.config';
