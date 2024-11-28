@@ -44,3 +44,7 @@ Thumbs.db
 
 # records
 /notes.txt
+
+# Environment variables
+.env
+

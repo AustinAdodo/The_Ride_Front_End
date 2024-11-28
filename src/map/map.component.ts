@@ -189,7 +189,6 @@ export class MapComponent implements OnInit, AfterViewInit {
     }, 2000);
   }
 
-
   /**
    * Generates random color for certain cars, for evaluation purposes only
    */

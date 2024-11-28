@@ -10,15 +10,26 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
             "outputPath": "dist/the-ride-front-end",
+            "customWebpackConfig": {
+              "path": "./webpack.config.ts"
+            },
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": ["zone.js", "src/window-global-fix.ts"],
+            "polyfills": [
+              "zone.js",
+              "src/window-global-fix.ts"
+            ],
             "tsConfig": "tsconfig.app.json",
-            "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.css"],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.css"
+            ],
             "scripts": [],
             "fileReplacements": [
               {
@@ -58,9 +69,8 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-          },
+          "builder": "@angular-builders/custom-webpack:dev-server",
+          "options": {},
           "configurations": {
             "production": {
               "buildTarget": "The_Ride_Front_End:build:production"
@@ -92,7 +102,9 @@
         "prerender": {
           "builder": "@nguniversal/builders:prerender",
           "options": {
-            "routes": ["/"],
+            "routes": [
+              "/"
+            ],
             "buildTarget": "The_Ride_Front_End:build:production",
             "serverTarget": "The_Ride_Front_End:server:production"
           }
@@ -111,8 +123,13 @@
               "zone.js/testing"
             ],
             "tsConfig": "tsconfig.spec.json",
-            "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.css"],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.css"
+            ],
             "scripts": []
           }
         }
