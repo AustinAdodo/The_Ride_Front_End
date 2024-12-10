@@ -37,7 +37,6 @@ export class MapComponent implements OnInit, AfterViewInit {
 
   /**
    * Updates car positions periodically (replace with actual data fetching logic).
-   *
    * latitude and longitude are randomly changed
    *
    */
@@ -159,6 +158,9 @@ export class MapComponent implements OnInit, AfterViewInit {
     car4.marker = this.createCarMarker(car4).addTo(this.map!);
   }
 
+  /**
+   * Simulates Momentary Car movements of all displayed vehicles.
+  */
   private simulateCarMovement() {
     const longitudes1 = [3.355658052660914, 3.3561514472160923, 3.356408870461337, 3.3566770196756863,
       3.3573420297261976, 3.357567275067055,
@@ -188,6 +190,11 @@ export class MapComponent implements OnInit, AfterViewInit {
       }
     }, 2000);
   }
+  
+  /**
+   * Simulates Pickup and Moves the programmatically chosen driver to pickup Location.
+  */
+  private takeChosenDriverToPickUpPoint(){}
 
   /**
    * Generates random color for certain cars, for evaluation purposes only
